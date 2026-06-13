@@ -17,7 +17,7 @@ export function Experience() {
 
       <motion.h2
         variants={fadeInUp}
-        className="mb-12 text-3xl font-semibold tracking-tight sm:text-4xl"
+        className="mb-12 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
       >
         A working <em className="font-serif italic text-primary/90">résumé</em>.
       </motion.h2>

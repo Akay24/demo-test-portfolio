@@ -18,7 +18,7 @@ function ProjectModal({
 }) {
   return (
     <motion.div
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+      className="fixed inset-0 z-70 flex items-center justify-center p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -26,7 +26,7 @@ function ProjectModal({
     >
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       <motion.div
-        className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/[0.06] bg-background p-8"
+        className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/6 bg-background p-8"
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ function ProjectModal({
         </p>
 
         {/* Highlights */}
-        <div className="mb-6 border-t border-white/[0.06] pt-6">
+        <div className="mb-6 border-t border-white/6 pt-6">
           <h4 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
             Key Highlights
           </h4>
@@ -84,7 +84,7 @@ function ProjectModal({
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-white/[0.06] px-5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:bg-white/5"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-white/6 px-5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:bg-white/5"
           >
             <GithubIcon size={14} />
             Source
@@ -120,7 +120,7 @@ function WorkRow({
   return (
     <motion.button
       onClick={onSelect}
-      className="group flex w-full items-center gap-4 border-b border-white/[0.04] py-5 text-left transition-all duration-300 hover:bg-white/[0.02] hover:pl-2 sm:gap-6 md:py-6"
+      className="group flex w-full items-center gap-4 border-b border-white/4 py-5 text-left transition-all duration-300 hover:bg-white/2 hover:pl-2 sm:gap-6 md:py-6"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -151,7 +151,7 @@ function WorkRow({
         {project.tech.slice(0, 3).map((t) => (
           <span
             key={t}
-            className="rounded bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] text-muted-foreground/40 transition-colors group-hover:text-muted-foreground/70"
+            className="rounded bg-white/4 px-2 py-0.5 font-mono text-[10px] text-muted-foreground/40 transition-colors group-hover:text-muted-foreground/70"
           >
             {t}
           </span>
@@ -174,7 +174,10 @@ export function Projects() {
     <>
       <SectionWrapper id="projects">
         {/* Eyebrow */}
-        <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
+        <motion.div
+          variants={fadeInUp}
+          className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60"
+        >
           <span className="text-primary/80">03</span>
           <span className="h-px w-8 bg-muted-foreground/20" />
           <span>Selected Work</span>
@@ -182,13 +185,13 @@ export function Projects() {
 
         <motion.h2
           variants={fadeInUp}
-          className="mb-12 text-3xl font-semibold tracking-tight sm:text-4xl"
+          className="mb-12 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
         >
           Things I&apos;ve <em className="font-serif italic text-primary/90">built</em>.
         </motion.h2>
 
         {/* Work list */}
-        <div className="border-t border-white/[0.04]">
+        <div className="border-t border-white/4">
           {projects.map((project, i) => (
             <WorkRow
               key={project.title}

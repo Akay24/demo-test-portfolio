@@ -29,17 +29,17 @@ export function About() {
         <div>
           <motion.h2
             variants={fadeInUp}
-            className="mb-8 text-3xl font-semibold tracking-tight sm:text-4xl"
+            className="mb-8 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
           >
             A <em className="font-serif italic text-primary/90">note</em> on what I do.
           </motion.h2>
 
           {/* Facts table */}
-          <motion.ul variants={fadeInUp} className="space-y-0 border-t border-white/[0.06]">
+          <motion.ul variants={fadeInUp} className="space-y-0 border-t border-white/6">
             {facts.map((fact, i) => (
               <motion.li
                 key={fact.label}
-                className="flex items-baseline justify-between border-b border-white/[0.06] py-3"
+                className="flex items-baseline justify-between border-b border-white/6 py-3"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -78,7 +78,7 @@ export function About() {
             {siteConfig.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="border-l border-white/[0.06] pl-4"
+                className="border-l border-white/6 pl-4"
               >
                 <div className="font-mono text-2xl font-bold text-foreground">
                   {stat.value}

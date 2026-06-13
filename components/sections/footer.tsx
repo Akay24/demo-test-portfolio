@@ -10,7 +10,7 @@ export function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="border-t border-white/[0.04] py-8"
+      className="border-t border-white/4 py-8"
     >
       <div className="mx-auto max-w-6xl px-6">
         <motion.div

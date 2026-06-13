@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle } from "lucide-react";
 import { siteConfig, socials } from "@/lib/data";
@@ -8,6 +8,8 @@ import { fadeInUp } from "@/lib/animations";
 import { SectionWrapper } from "@/components/section-wrapper";
 
 /* ── Scramble link text on hover ── */
+const STATIC_CHARS = new Set([" ", "+", "·", ".", "-", ",", "@"]);
+
 function ScrambleLink({
   href,
   label,
@@ -18,8 +20,7 @@ function ScrambleLink({
   external?: boolean;
 }) {
   const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const staticChars = new Set([" ", "+", "·", ".", "-", ",", "@"]);
-  const [chars, setChars] = useState(label.split(""));
+  const [chars, setChars] = useState(() => label.split(""));
   const sessionRef = useRef(0);
 
   const scramble = useCallback(() => {
@@ -29,7 +30,7 @@ function ScrambleLink({
     // Immediately scramble all
     setChars(
       finals.map((c) =>
-        staticChars.has(c)
+        STATIC_CHARS.has(c)
           ? c
           : glyphs[Math.floor(Math.random() * glyphs.length)]
       )
@@ -37,7 +38,7 @@ function ScrambleLink({
 
     // Resolve left to right
     finals.forEach((ch, idx) => {
-      if (staticChars.has(ch)) return;
+      if (STATIC_CHARS.has(ch)) return;
       setTimeout(() => {
         if (sessionRef.current !== session) return;
         let count = 0;
@@ -65,15 +66,10 @@ function ScrambleLink({
         }, 36);
       }, idx * 38);
     });
-  }, [label, glyphs, staticChars]);
+  }, [label, glyphs]);
 
   const reset = useCallback(() => {
     sessionRef.current++;
-    setChars(label.split(""));
-  }, [label]);
-
-  // Initialize on mount
-  useEffect(() => {
     setChars(label.split(""));
   }, [label]);
 
@@ -82,7 +78,7 @@ function ScrambleLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group flex items-center justify-between border-b border-white/[0.04] py-5 transition-all hover:pl-2 md:py-6"
+      className="group flex items-center justify-between border-b border-white/4 py-5 transition-all hover:pl-2 md:py-6"
       onMouseEnter={scramble}
       onMouseLeave={reset}
     >
@@ -135,7 +131,7 @@ export function Contact() {
 
       <motion.h2
         variants={fadeInUp}
-        className="mb-12 text-3xl font-semibold tracking-tight sm:text-4xl"
+        className="mb-12 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
       >
         Say <em className="font-serif italic text-primary/90">hello</em>.
       </motion.h2>
@@ -143,7 +139,7 @@ export function Contact() {
       <div className="grid gap-16 md:grid-cols-2">
         {/* Social links — scramble on hover */}
         <motion.div variants={fadeInUp}>
-          <div className="border-t border-white/[0.04]">
+          <div className="border-t border-white/4">
             {socials.map((social) => (
               <ScrambleLink
                 key={social.name}
@@ -197,7 +193,7 @@ export function Contact() {
                   setFormState((s) => ({ ...s, name: e.target.value }))
                 }
                 placeholder="Your name"
-                className="h-11 w-full border-b border-white/[0.06] bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+                className="h-11 w-full border-b border-white/6 bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
               />
             </div>
             <div>
@@ -216,7 +212,7 @@ export function Contact() {
                   setFormState((s) => ({ ...s, email: e.target.value }))
                 }
                 placeholder="you@example.com"
-                className="h-11 w-full border-b border-white/[0.06] bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+                className="h-11 w-full border-b border-white/6 bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
               />
             </div>
           </div>
@@ -237,7 +233,7 @@ export function Contact() {
                 setFormState((s) => ({ ...s, message: e.target.value }))
               }
               placeholder="Tell me about your project..."
-              className="w-full resize-none border-b border-white/[0.06] bg-transparent px-0 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+              className="w-full resize-none border-b border-white/6 bg-transparent px-0 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
             />
           </div>
 

@@ -43,33 +43,39 @@ export function Navigation() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isMobileMenuOpen]);
+
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    document.body.style.overflow = "";
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   const toggleMobileMenu = () => {
-    const next = !isMobileMenuOpen;
-    setIsMobileMenuOpen(next);
-    document.body.style.overflow = next ? "hidden" : "";
+    setIsMobileMenuOpen((next) => !next);
   };
 
   return (
     <>
       {/* Scroll Progress */}
       <motion.div
-        className="fixed left-0 right-0 top-0 z-[60] h-px origin-left bg-primary/60"
+        className="fixed left-0 right-0 top-0 z-60 h-px origin-left bg-primary/60"
         style={{ scaleX }}
       />
 
       {/* Corner decorations */}
-      <div className="pointer-events-none fixed inset-0 z-[55]" aria-hidden="true">
-        <div className="absolute left-4 top-4 h-4 w-4 border-l border-t border-white/[0.08]" />
-        <div className="absolute right-4 top-4 h-4 w-4 border-r border-t border-white/[0.08]" />
-        <div className="absolute bottom-4 left-4 h-4 w-4 border-b border-l border-white/[0.08]" />
-        <div className="absolute bottom-4 right-4 h-4 w-4 border-b border-r border-white/[0.08]" />
+      <div className="pointer-events-none fixed inset-0 z-55" aria-hidden="true">
+        <div className="absolute left-4 top-4 h-4 w-4 border-l border-t border-white/8" />
+        <div className="absolute right-4 top-4 h-4 w-4 border-r border-t border-white/8" />
+        <div className="absolute bottom-4 left-4 h-4 w-4 border-b border-l border-white/8" />
+        <div className="absolute bottom-4 right-4 h-4 w-4 border-b border-r border-white/8" />
       </div>
 
       {/* Header */}
@@ -134,7 +140,7 @@ export function Navigation() {
             <span
               className={cn(
                 "block h-px w-5 bg-foreground transition-all duration-300",
-                isMobileMenuOpen && "translate-y-[5px] rotate-45"
+                isMobileMenuOpen && "translate-y-1.25 rotate-45"
               )}
             />
             <span
@@ -146,7 +152,7 @@ export function Navigation() {
             <span
               className={cn(
                 "block h-px w-5 bg-foreground transition-all duration-300",
-                isMobileMenuOpen && "-translate-y-[5px] -rotate-45"
+                isMobileMenuOpen && "-translate-y-1.25 -rotate-45"
               )}
             />
           </button>

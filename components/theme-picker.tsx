@@ -1,10 +1,39 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { themes, getThemeById, DEFAULT_THEME_ID, type Theme } from "@/lib/themes";
 
 const STORAGE_KEY = "__portfolio_theme__";
+
+function getStoredThemeId() {
+  if (typeof window === "undefined") {
+    return DEFAULT_THEME_ID;
+  }
+
+  try {
+    return localStorage.getItem(STORAGE_KEY) ?? DEFAULT_THEME_ID;
+  } catch {
+    return DEFAULT_THEME_ID;
+  }
+}
+
+function useStoredTheme() {
+  const themeId = useSyncExternalStore(
+    (onStoreChange) => {
+      window.addEventListener("storage", onStoreChange);
+      window.addEventListener("themechange", onStoreChange);
+      return () => {
+        window.removeEventListener("storage", onStoreChange);
+        window.removeEventListener("themechange", onStoreChange);
+      };
+    },
+    getStoredThemeId,
+    () => DEFAULT_THEME_ID
+  );
+
+  return getThemeById(themeId);
+}
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
@@ -22,20 +51,8 @@ function applyTheme(theme: Theme) {
 /* ── Desktop Picker (in header) ── */
 export function ThemePicker() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<Theme>(getThemeById(DEFAULT_THEME_ID));
+  const activeTheme = useStoredTheme();
   const pickerRef = useRef<HTMLDivElement>(null);
-
-  // Load saved theme
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const theme = getThemeById(saved);
-        setActiveTheme(theme);
-        applyTheme(theme);
-      }
-    } catch {}
-  }, []);
 
   // Close on click outside
   useEffect(() => {
@@ -56,10 +73,10 @@ export function ThemePicker() {
   }, []);
 
   const selectTheme = useCallback((theme: Theme) => {
-    setActiveTheme(theme);
     applyTheme(theme);
     try {
       localStorage.setItem(STORAGE_KEY, theme.id);
+      window.dispatchEvent(new Event("themechange"));
     } catch {}
     setIsOpen(false);
   }, []);
@@ -107,7 +124,7 @@ export function ThemePicker() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute right-0 top-full z-[70] mt-2 w-48 overflow-hidden rounded-xl border border-white/[0.06] bg-background/95 p-1 shadow-2xl backdrop-blur-xl"
+            className="absolute right-0 top-full z-70 mt-2 w-48 overflow-hidden rounded-xl border border-white/6 bg-background/95 p-1 shadow-2xl backdrop-blur-xl"
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
@@ -125,8 +142,8 @@ export function ThemePicker() {
                 onClick={() => selectTheme(theme)}
                 className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
                   activeTheme.id === theme.id
-                    ? "bg-white/[0.06] text-foreground"
-                    : "text-muted-foreground hover:bg-white/[0.03] hover:text-foreground"
+                    ? "bg-white/6 text-foreground"
+                    : "text-muted-foreground hover:bg-white/3 hover:text-foreground"
                 }`}
                 role="option"
                 aria-selected={activeTheme.id === theme.id}
@@ -143,7 +160,7 @@ export function ThemePicker() {
             ))}
 
             {/* Divider */}
-            <div className="my-1 h-px bg-white/[0.04]" />
+            <div className="my-1 h-px bg-white/4" />
 
             {/* Light themes */}
             <div className="px-2 pb-1 pt-1 font-mono text-[9px] uppercase tracking-widest text-muted-foreground/30">
@@ -155,8 +172,8 @@ export function ThemePicker() {
                 onClick={() => selectTheme(theme)}
                 className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
                   activeTheme.id === theme.id
-                    ? "bg-white/[0.06] text-foreground"
-                    : "text-muted-foreground hover:bg-white/[0.03] hover:text-foreground"
+                    ? "bg-white/6 text-foreground"
+                    : "text-muted-foreground hover:bg-white/3 hover:text-foreground"
                 }`}
                 role="option"
                 aria-selected={activeTheme.id === theme.id}
@@ -181,31 +198,8 @@ export function ThemePicker() {
 /* ── Mobile FAB (floating action button) ── */
 export function ThemeFab() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<Theme>(getThemeById(DEFAULT_THEME_ID));
+  const activeTheme = useStoredTheme();
   const fabRef = useRef<HTMLDivElement>(null);
-
-  // Sync with localStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        setActiveTheme(getThemeById(saved));
-      }
-    } catch {}
-
-    // Listen for theme changes from the desktop picker
-    const handleStorage = () => {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const theme = getThemeById(saved);
-          setActiveTheme(theme);
-        }
-      } catch {}
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -225,23 +219,23 @@ export function ThemeFab() {
   }, []);
 
   const selectTheme = useCallback((theme: Theme) => {
-    setActiveTheme(theme);
     applyTheme(theme);
     try {
       localStorage.setItem(STORAGE_KEY, theme.id);
+      window.dispatchEvent(new Event("themechange"));
     } catch {}
     setIsOpen(false);
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[65] md:hidden" ref={fabRef}>
+    <div className="fixed bottom-6 right-6 z-65 md:hidden" ref={fabRef}>
       {/* FAB button */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.08] bg-background/80 shadow-xl backdrop-blur-xl transition-transform hover:scale-105"
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-white/8 bg-background/80 shadow-xl backdrop-blur-xl transition-transform hover:scale-105"
         aria-label="Choose theme"
         aria-expanded={isOpen}
       >
@@ -260,7 +254,7 @@ export function ThemeFab() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute bottom-full right-0 mb-3 flex flex-wrap gap-2 rounded-2xl border border-white/[0.06] bg-background/95 p-3 shadow-2xl backdrop-blur-xl"
+            className="absolute bottom-full right-0 mb-3 flex flex-wrap gap-2 rounded-2xl border border-white/6 bg-background/95 p-3 shadow-2xl backdrop-blur-xl"
             style={{ width: "220px" }}
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

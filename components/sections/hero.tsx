@@ -8,12 +8,44 @@ import { AnimatedBackground } from "@/components/animated-background";
 
 /* ── Scramble text hook ── */
 function useScrambleText(finalText: string, delay = 300) {
-  const [display, setDisplay] = useState("");
   const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const hasRun = useRef(false);
+  const compactText = finalText.replace(/\s+/g, "");
+  const createSeededText = useCallback(
+    () =>
+      compactText
+        .split("")
+        .map((char, index) => glyphs[(char.charCodeAt(0) + index * 13) % glyphs.length])
+        .join(""),
+    [compactText]
+  );
+  const createRandomText = useCallback(
+    () =>
+      compactText
+        .split("")
+        .map(() => glyphs[Math.floor(Math.random() * glyphs.length)])
+        .join(""),
+    [compactText]
+  );
+
+  const [display, setDisplay] = useState(() => createSeededText());
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const clearTimers = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
 
   const scramble = useCallback(() => {
-    const chars = finalText.split("");
+    clearTimers();
+
+    const chars = compactText.split("");
     const queue = chars.map((ch, i) => ({
       final: ch,
       start: Math.floor(Math.random() * 15),
@@ -22,29 +54,25 @@ function useScrambleText(finalText: string, delay = 300) {
     let frame = 0;
     const maxFrame = Math.max(...queue.map((q) => q.end));
 
-    const interval = setInterval(() => {
+    setDisplay(createRandomText());
+
+    intervalRef.current = setInterval(() => {
       const output = queue
         .map((q) => {
           if (frame >= q.end) return q.final;
-          if (frame >= q.start)
-            return glyphs[Math.floor(Math.random() * glyphs.length)];
-          return "";
+          return glyphs[Math.floor(Math.random() * glyphs.length)];
         })
         .join("");
       setDisplay(output);
       frame++;
-      if (frame > maxFrame) clearInterval(interval);
+      if (frame > maxFrame) clearTimers();
     }, 30);
-
-    return () => clearInterval(interval);
-  }, [finalText, glyphs]);
+  }, [clearTimers, compactText, createRandomText]);
 
   useEffect(() => {
-    if (hasRun.current) return;
-    hasRun.current = true;
-    const timer = setTimeout(scramble, delay);
-    return () => clearTimeout(timer);
-  }, [scramble, delay]);
+    timeoutRef.current = setTimeout(scramble, delay);
+    return clearTimers;
+  }, [clearTimers, delay, scramble]);
 
   return { display, rescramble: scramble };
 }
@@ -68,7 +96,7 @@ function Ticker() {
   const repeated = [...items, ...items, ...items, ...items];
 
   return (
-    <div className="relative overflow-hidden border-y border-white/[0.06] py-4" aria-hidden="true">
+    <div className="relative overflow-hidden border-y border-white/6 py-4" aria-hidden="true">
       <div className="flex animate-marquee whitespace-nowrap">
         {repeated.map((item, i) => (
           <span
@@ -94,6 +122,7 @@ function Ticker() {
 /* ── Hero Section ── */
 export function Hero() {
   const { display: nameDisplay, rescramble } = useScrambleText(siteConfig.name, 400);
+  const nameWords = siteConfig.name.split(" ");
 
   const handleScrollTo = (id: string) => {
     const el = document.querySelector(id);
@@ -101,10 +130,10 @@ export function Hero() {
   };
 
   return (
-    <>
+    <div className="flex min-h-svh flex-col">
       <section
         id="hero"
-        className="relative flex min-h-screen flex-col justify-between overflow-hidden"
+        className="relative flex flex-1 flex-col justify-between overflow-hidden"
         aria-label="Introduction"
       >
         <AnimatedBackground />
@@ -133,22 +162,29 @@ export function Hero() {
           {/* Name — scramble effect */}
           <motion.h1
             variants={fadeInUp}
-            className="mb-6 cursor-default font-mono text-5xl font-bold tracking-tighter sm:text-7xl md:text-8xl lg:text-9xl"
+            className="mb-6 cursor-default font-serif text-[clamp(3.5rem,11vw,10rem)] font-normal leading-[0.86] tracking-[-0.03em]"
             onMouseEnter={rescramble}
             aria-label={siteConfig.name}
           >
-            {nameDisplay.split("").map((char, i) => (
-              <span
-                key={i}
-                className={
-                  char === nameDisplay[i] && i < siteConfig.name.length && char === siteConfig.name[i]
-                    ? "inline-block transition-colors duration-200"
-                    : "inline-block text-primary/70"
-                }
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+            {nameWords.map((word, wordIndex) => {
+              const displayWord = nameDisplay.slice(
+                nameWords.slice(0, wordIndex).reduce((count, current) => count + current.length, 0),
+                nameWords.slice(0, wordIndex).reduce((count, current) => count + current.length, 0) + word.length
+              );
+
+              return (
+                <span key={`${word}-${wordIndex}`} className="block whitespace-nowrap">
+                  {displayWord.split("").map((char, charIndex) => (
+                    <span
+                      key={`${wordIndex}-${charIndex}`}
+                      className="inline-block transition-colors duration-200"
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              );
+            })}
           </motion.h1>
 
           {/* Role + Tagline */}
@@ -219,6 +255,6 @@ export function Hero() {
 
       {/* Ticker marquee */}
       <Ticker />
-    </>
+    </div>
   );
 }

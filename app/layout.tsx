@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import { Navigation } from "@/components/navigation";
 import { CursorGlow } from "@/components/cursor-glow";
 import { ThemeFab } from "@/components/theme-picker";
 import { themes } from "@/lib/themes";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-display-serif",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -88,11 +96,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark antialiased`}
+      className={`${geist.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} dark antialiased`}
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: prePaintScript }} />
+        <Script
+          id="theme-prepaint"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: prePaintScript }}
+        />
       </head>
       <body className="min-h-screen bg-background text-foreground">
         <CursorGlow />
