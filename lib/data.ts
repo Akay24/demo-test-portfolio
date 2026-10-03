@@ -13,15 +13,15 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 // ─── Site Configuration ────────────────────────────────────────────
 export const siteConfig = {
   name: "Abhijeet Mishra",
-  role: "Software Developer | Backend | Python | Node.js",
+  role: "Software Engineer | Backend Architecture | Python & FastAPI",
   tagline:
     "I architect scalable automation solutions and API ecosystems, turning complex workflows into elegant, cloud-native applications.",
-  email: "abhijeetmishragcek@gmail.com",
+  email: "abhijeetmishra2410@gmail.com",
   location: "Bhubaneswar, Odisha, India",
-  bio: "Software Developer with ~1.5 years of experience architecting scalable automation solutions and API ecosystems. Expert in Python and Node.js/Express.js, with specialized proficiency in Robot Framework and Veeva Vault for streamlining complex workflows. Adept at optimizing CI/CD pipelines using Jenkins and deploying cloud-native applications on AWS. A proactive technical contributor who combines engineering rigor with leadership initiative, successfully mentoring teams to drive project delivery and code quality.",
+  bio: "Software Developer with 2+ years of experience architecting scalable automation solutions and API ecosystems. Expert in Python and Node.js/Express.js, with specialized proficiency in Robot Framework and Veeva Vault for streamlining complex workflows. Adept at optimizing CI/CD pipelines using Jenkins and deploying cloud-native applications on AWS. A proactive technical contributor who combines engineering rigor with leadership initiative, successfully mentoring teams to drive project delivery and code quality.",
   resumeUrl: "#",
   stats: [
-    { label: "Years Experience", value: "1.5+" },
+    { label: "Years Experience", value: "2+" },
     { label: "Projects Shipped", value: "10+" },
     { label: "API Latency Reduced", value: "23%" },
   ],
@@ -35,9 +35,9 @@ export interface Social {
 }
 
 export const socials: Social[] = [
-  { name: "GitHub", href: "https://github.com/mishraabhijeet", icon: GithubIcon },
+  { name: "GitHub", href: "https://github.com/Akay24", icon: GithubIcon },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/mishraabhijeet2410", icon: LinkedinIcon },
-  { name: "Email", href: "mailto:abhijeetmishragcek@gmail.com", icon: Mail },
+  { name: "Email", href: "mailto:abhijeetmishra2410@gmail.com", icon: Mail },
 ];
 
 // ─── Navigation ────────────────────────────────────────────────────
@@ -45,6 +45,7 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Designs", href: "#designs" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -62,10 +63,10 @@ export const skills: SkillCategory[] = [
     icon: Server,
     items: [
       "Python",
+      "FastAPI",
       "Node.js",
       "Express.js",
       "REST APIs",
-      "MVC Architecture",
       "Microservices",
     ],
   },
@@ -106,15 +107,15 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: "Testing & QA",
+    category: "Testing & Automation",
     icon: TestTube,
     items: [
       "Robot Framework",
       "Test Automation",
-      "Regression Testing",
-      "Code Reviews",
+      "AI & Workflow Automation",
+      "CI/CD Integration",
       "Veeva Vault",
-      "Debugging",
+      "Regression Testing",
     ],
   },
   {
@@ -152,7 +153,7 @@ export const projects: Project[] = [
     longDescription:
       "Designed and implemented a scalable backend microservices platform at Spotline, Inc. using Python and Node.js (Express). Focused on optimizing MongoDB queries to significantly reduce API latency and enhance overall system performance. The architecture follows best practices for modular design, ensuring high maintainability and ease of deployment on AWS.",
     tech: ["Python", "Node.js", "Express.js", "MongoDB", "AWS"],
-    github: "https://github.com/mishraabhijeet",
+    github: "https://github.com/Akay24",
     live: "#",
     highlights: [
       "Reduced API latency and enhanced system performance by 23%",
@@ -169,7 +170,7 @@ export const projects: Project[] = [
     longDescription:
       "Led test automation initiatives using Robot Framework, seamlessly integrating automated scripts into Jenkins CI/CD pipelines. This reduced manual regression testing efforts by 65%, significantly improving release velocity and code confidence. Enforced best practices including legacy code standards and modular test architecture.",
     tech: ["Robot Framework", "Jenkins", "CI/CD", "Python", "Veeva Vault"],
-    github: "https://github.com/mishraabhijeet",
+    github: "https://github.com/Akay24",
     live: "#",
     highlights: [
       "Reduced manual regression testing by 65%",
@@ -186,7 +187,7 @@ export const projects: Project[] = [
     longDescription:
       "Engineered dynamic full-stack applications using the MERN Stack (MongoDB, Express.js, React, Node.js), delivering robust end-to-end solutions. Architected scalable RESTful APIs utilizing MVC design patterns to ensure code modularity and efficient data flow between client and server. Optimized frontend-backend integration and resolved complex debugging challenges.",
     tech: ["React", "Node.js", "Express.js", "MongoDB", "REST API"],
-    github: "https://github.com/mishraabhijeet",
+    github: "https://github.com/Akay24",
     live: "#",
     highlights: [
       "End-to-end MERN stack development",
@@ -203,7 +204,7 @@ export const projects: Project[] = [
     longDescription:
       "Built end-to-end data science pipelines including data cleaning, transformation, and feature preparation using Python-based libraries. Implemented predictive models with Scikit-learn, focusing on improving model performance through iterative tuning. Analyzed outcomes using RMSE and MSE metrics, and documented experiments through interactive Jupyter Notebook workflows and visualizations.",
     tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter"],
-    github: "https://github.com/mishraabhijeet",
+    github: "https://github.com/Akay24",
     live: "#",
     highlights: [
       "End-to-end data cleaning and feature engineering",
@@ -323,4 +324,219 @@ export const certifications = [
   "Data Science Certification",
   "HackerRank — SQL Basics",
   "AWS Academy Graduate — Machine Learning Foundations",
+];
+
+// ─── Design Explorations (20 Standalone Websites) ───────────────────
+export interface DesignExploration {
+  id: string;
+  number: string;
+  name: string;
+  style: string;
+  description: string;
+  url: string;
+  tags: string[];
+  category: "Minimal & Grid" | "Vibrant & Expressive" | "Retro & Heritage" | "Atmospheric & 3D";
+}
+
+export const designExplorations: DesignExploration[] = [
+  {
+    id: "01-minimalism",
+    number: "01",
+    name: "FORM Studio",
+    style: "Minimalism",
+    description: "Architectural monograph studio exploring high negative space, stark monochromatic balance, and precise grid geometry.",
+    url: "https://01-minimalism.vercel.app",
+    tags: ["Monochrome", "Negative Space", "Architectural"],
+    category: "Minimal & Grid"
+  },
+  {
+    id: "02-maximalism",
+    number: "02",
+    name: "LOUD Magazine",
+    style: "Maximalism",
+    description: "High-density digital culture zine featuring overlapping kinetic typography, clashing textures, and hyper-saturated aesthetics.",
+    url: "https://02-maximalism.vercel.app",
+    tags: ["High Density", "Expressive Type", "Vibrant Clash"],
+    category: "Vibrant & Expressive"
+  },
+  {
+    id: "03-futuristic",
+    number: "03",
+    name: "NEXORA Mobility",
+    style: "Futuristic / Sci-Fi",
+    description: "Suborbital avionics console with real-time HUD telemetry, glowing cyan optics, and interactive mission trajectory controls.",
+    url: "https://03-futuristic.vercel.app",
+    tags: ["HUD Telemetry", "Sci-Fi Avionics", "Cyan Glow"],
+    category: "Atmospheric & 3D"
+  },
+  {
+    id: "04-vector-art",
+    number: "04",
+    name: "Forma Creative",
+    style: "Vector Art",
+    description: "Digital branding and illustration studio built with crisp mathematical SVG primitives, isometric grids, and flat color planes.",
+    url: "https://04-vector-art.vercel.app",
+    tags: ["Crisp SVG", "Isometric Grid", "Flat Art"],
+    category: "Minimal & Grid"
+  },
+  {
+    id: "05-collage-art",
+    number: "05",
+    name: "AFTERIMAGE Festival",
+    style: "Collage Art",
+    description: "Avant-garde festival showcase featuring torn-paper cutouts, halftone textures, analog tape overlays, and dadaist typography.",
+    url: "https://05-collage-art.vercel.app",
+    tags: ["Paper Cutouts", "Halftone Rhythms", "Mixed Media"],
+    category: "Vibrant & Expressive"
+  },
+  {
+    id: "06-retro",
+    number: "06",
+    name: "The Jukebox Diner",
+    style: "Retro 70s / 80s",
+    description: "Analog Hi-Fi lounge with warm amber luminescence, interactive vacuum tube VU meters, and rich woodgrain textures.",
+    url: "https://06-retro.vercel.app",
+    tags: ["Warm Amber", "Analog Hi-Fi", "Woodgrain"],
+    category: "Retro & Heritage"
+  },
+  {
+    id: "07-cyberpunk",
+    number: "07",
+    name: "NEON DISTRICT",
+    style: "Cyberpunk",
+    description: "Dystopian underworld tech marketplace terminal featuring CRT scanlines, glitch chromatic aberration, and neon pink/cyan glows.",
+    url: "https://07-cyberpunk.vercel.app",
+    tags: ["Glitch FX", "CRT Scanline", "Neon Terminal"],
+    category: "Atmospheric & 3D"
+  },
+  {
+    id: "08-pop-art",
+    number: "08",
+    name: "POPKICK Sneakers",
+    style: "Pop Art",
+    description: "Comic book streetwear drop inspired by Roy Lichtenstein and Andy Warhol, featuring Ben-Day dots, primary colors, and action bubbles.",
+    url: "https://08-pop-art.vercel.app",
+    tags: ["Ben-Day Dots", "Primary Palette", "Comic Ink"],
+    category: "Vibrant & Expressive"
+  },
+  {
+    id: "09-glassmorphism",
+    number: "09",
+    name: "Prism Analytics",
+    style: "Glassmorphism",
+    description: "Telemetry cloud dashboard built with multi-layered frosted glass panels, backdrop blurring, and chromatic light refractions.",
+    url: "https://09-glassmorphism.vercel.app",
+    tags: ["Frosted Glass", "Backdrop Blur", "Specular Light"],
+    category: "Atmospheric & 3D"
+  },
+  {
+    id: "10-clay-style",
+    number: "10",
+    name: "Pebble Tracker",
+    style: "Claymorphism",
+    description: "Tactile habit tracking experience crafted with soft inner/outer pillowy shadows, rounded 3D clay cards, and friendly pastel palettes.",
+    url: "https://10-clay-style.vercel.app",
+    tags: ["Soft 3D", "Tactile Clay", "Pastel Shades"],
+    category: "Atmospheric & 3D"
+  },
+  {
+    id: "11-pixel-art",
+    number: "11",
+    name: "STARBYTE Chronicles",
+    style: "Pixel Art",
+    description: "16-bit retro RPG showcase with authentic bitmap typography, sprite animation canvases, and arcade CRT scanlines.",
+    url: "https://11-pixel-art.vercel.app",
+    tags: ["16-Bit Bitmap", "Sprite Art", "Arcade CRT"],
+    category: "Retro & Heritage"
+  },
+  {
+    id: "12-editorial",
+    number: "12",
+    name: "FRAME Journal",
+    style: "Editorial",
+    description: "Refined architectural publication with high-contrast serif typography, asymmetric broadsheet columns, and elegant pull-quotes.",
+    url: "https://12-editorial.vercel.app",
+    tags: ["Editorial Serif", "Broadsheet Grid", "Refined Leading"],
+    category: "Minimal & Grid"
+  },
+  {
+    id: "13-y2k",
+    number: "13",
+    name: "FUTURE.exe",
+    style: "Y2K Aesthetic",
+    description: "Early-2000s cyber-rave digital portal featuring liquid chrome gradients, metallic bubble typography, starbursts, and retro web widgets.",
+    url: "https://13-y2k.vercel.app",
+    tags: ["Liquid Chrome", "Retro Web 1.0", "Starburst FX"],
+    category: "Vibrant & Expressive"
+  },
+  {
+    id: "14-swiss-design",
+    number: "14",
+    name: "GRID/26 International",
+    style: "Swiss Design",
+    description: "International Typographic Style symposium with mathematical modular grids, objective hierarchy, and bold Akzidenz-Grotesk type.",
+    url: "https://14-swiss-design.vercel.app",
+    tags: ["Modular Grid", "Objective Layout", "Akzidenz Bold"],
+    category: "Minimal & Grid"
+  },
+  {
+    id: "15-bohemian",
+    number: "15",
+    name: "Wildwoven Studio",
+    style: "Bohemian",
+    description: "Artisan craft collective featuring earthy terracotta, botanical sage hues, wabi-sabi organic curves, and craft textures.",
+    url: "https://15-bohemian.vercel.app",
+    tags: ["Earthy Terracotta", "Botanical Sage", "Organic Forms"],
+    category: "Retro & Heritage"
+  },
+  {
+    id: "16-victorian-style",
+    number: "16",
+    name: "Ashbourne & Co.",
+    style: "Victorian Heritage",
+    description: "Heritage tea apothecary with intricate engraved filigree borders, gilded gold foil accents, and antique emerald typography.",
+    url: "https://16-victorian-style.vercel.app",
+    tags: ["Engraved Filigree", "Gilded Gold", "Heritage Antique"],
+    category: "Retro & Heritage"
+  },
+  {
+    id: "17-graffiti",
+    number: "17",
+    name: "RAWBLOCK Underground",
+    style: "Graffiti / Street Art",
+    description: "Subterranean streetwear portal with spray-paint textures, dripping stencils, concrete grunge surfaces, and rebellious typography.",
+    url: "https://17-graffiti.vercel.app",
+    tags: ["Spray Stencils", "Concrete Grunge", "Urban Streetwear"],
+    category: "Vibrant & Expressive"
+  },
+  {
+    id: "18-aurora",
+    number: "18",
+    name: "AURORA FM",
+    style: "Aurora Glow",
+    description: "Sub-arctic ambient soundscape player powered by animated luminescent color mesh gradients and ethereal chromatic glows.",
+    url: "https://18-aurora.vercel.app",
+    tags: ["Color Mesh", "Ethereal Glow", "Ambient Waves"],
+    category: "Atmospheric & 3D"
+  },
+  {
+    id: "19-handwritten",
+    number: "19",
+    name: "Notes by Abhi",
+    style: "Handwritten / Sketchbook",
+    description: "Creator sketchbook with natural cursive script typography, margin doodles, paper texture backgrounds, and washi tape tabs.",
+    url: "https://19-handwritten.vercel.app",
+    tags: ["Natural Cursive", "Paper Texture", "Washi Tape"],
+    category: "Retro & Heritage"
+  },
+  {
+    id: "20-surreal-art",
+    number: "20",
+    name: "The Other Side",
+    style: "Surrealism",
+    description: "Metaphysical exhibition exploring dream logic, paradoxical vanishing grids, floating classical monoliths, and twilight velvet skies.",
+    url: "https://20-surreal-art.vercel.app",
+    tags: ["Dream Logic", "Metaphysical Grid", "Floating Obelisks"],
+    category: "Atmospheric & 3D"
+  }
 ];

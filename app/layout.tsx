@@ -27,34 +27,41 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abhijeet Mishra | Software Developer",
+  metadataBase: new URL("https://abhijeet-mishra.vercel.app"),
+  title: "Abhijeet Mishra | Software Engineer — Backend & Python Automation",
   description:
-    "Software Developer with ~1.5 years of experience in Python, Node.js, REST APIs, and cloud-native applications. Expert in backend microservices, test automation, and CI/CD pipelines.",
+    "Software Engineer with 2+ years of experience architecting scalable automation solutions, FastAPI and Node.js API ecosystems, and cloud-native applications on AWS.",
   keywords: [
-    "Software Developer",
+    "Abhijeet Mishra",
+    "Software Engineer",
     "Backend Developer",
-    "Python",
+    "Python Automation",
+    "FastAPI",
     "Node.js",
     "REST APIs",
     "AWS",
     "Robot Framework",
-    "MERN Stack",
-    "Full-Stack Developer",
+    "Workflow Automation",
+    "Microservices Architecture",
   ],
   authors: [{ name: "Abhijeet Mishra" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Abhijeet Mishra | Software Developer",
+    url: "https://abhijeet-mishra.vercel.app",
+    title: "Abhijeet Mishra | Software Engineer — Backend & Python Automation",
     description:
-      "Software Developer specializing in Python, Node.js, REST APIs, and scalable backend microservices.",
+      "Software Engineer with 2+ years of experience specializing in Python, FastAPI, Node.js, and cloud-native backend architecture.",
     siteName: "Abhijeet Mishra Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abhijeet Mishra | Software Developer",
+    title: "Abhijeet Mishra | Software Engineer — Backend & Python Automation",
     description:
-      "Software Developer specializing in Python, Node.js, REST APIs, and scalable backend microservices.",
+      "Software Engineer with 2+ years of experience specializing in Python, FastAPI, Node.js, and cloud-native backend architecture.",
   },
   robots: {
     index: true,

@@ -82,21 +82,21 @@ function Ticker() {
   const items = [
     "Software Engineer",
     "·",
-    "React & Next.js",
+    "Backend Architecture",
     "·",
-    "TypeScript",
+    "Python & FastAPI",
     "·",
-    "Full-Stack",
+    "Workflow Automation",
     "·",
-    "Product Design",
+    "Cloud & AWS",
     "·",
-    "Open Source",
+    "CI/CD & DevOps",
     "·",
   ];
   const repeated = [...items, ...items, ...items, ...items];
 
   return (
-    <div className="relative overflow-hidden border-y border-white/6 py-4" aria-hidden="true">
+    <div className="relative overflow-hidden border-y border-border/40 py-4" aria-hidden="true">
       <div className="flex animate-marquee whitespace-nowrap">
         {repeated.map((item, i) => (
           <span
@@ -224,7 +224,7 @@ export function Hero() {
 
             <motion.button
               onClick={() => handleScrollTo("#contact")}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/10 px-6 text-sm font-medium text-foreground transition-all hover:border-white/20 hover:bg-white/5"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-border px-6 text-sm font-medium text-foreground transition-all hover:border-foreground/20 hover:bg-muted/80"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
