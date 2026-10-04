@@ -24,9 +24,9 @@ function ProjectModal({
       exit={{ opacity: 0 }}
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
       <motion.div
-        className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/6 bg-background p-8"
+        className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-2xl"
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ function ProjectModal({
       >
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground"
+          className="absolute right-4 top-4 rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
           aria-label="Close project details"
         >
           <X size={18} />
@@ -45,12 +45,12 @@ function ProjectModal({
         <div className="mb-6 flex items-start gap-4">
           <span className="text-4xl">{project.icon}</span>
           <div>
-            <h3 className="text-2xl font-bold">{project.title}</h3>
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
+            <div className="mt-2.5 flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="rounded bg-white/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"
+                  className="rounded-md border border-border bg-muted/60 px-2.5 py-1 font-mono text-xs uppercase tracking-wider text-muted-foreground"
                 >
                   {t}
                 </span>
@@ -59,19 +59,19 @@ function ProjectModal({
           </div>
         </div>
 
-        <p className="mb-6 leading-relaxed text-muted-foreground">
+        <p className="mb-6 text-base leading-relaxed text-muted-foreground">
           {project.longDescription}
         </p>
 
         {/* Highlights */}
-        <div className="mb-6 border-t border-white/6 pt-6">
-          <h4 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+        <div className="mb-6 border-t border-border pt-6">
+          <h4 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold">
             Key Highlights
           </h4>
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {project.highlights.map((h) => (
-              <li key={h} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+              <li key={h} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                 {h}
               </li>
             ))}
@@ -84,7 +84,7 @@ function ProjectModal({
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-white/6 px-5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:bg-white/5"
+            className="inline-flex h-11 items-center gap-2 rounded-lg border border-border px-5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:bg-muted"
           >
             <GithubIcon size={14} />
             Source
@@ -93,7 +93,7 @@ function ProjectModal({
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-lg bg-foreground px-5 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90"
           >
             <ExternalLink size={14} />
             Live Demo
@@ -120,14 +120,14 @@ function WorkRow({
   return (
     <motion.button
       onClick={onSelect}
-      className="group flex w-full items-center gap-4 border-b border-white/4 py-5 text-left transition-all duration-300 hover:bg-white/2 hover:pl-2 sm:gap-6 md:py-6"
+      className="group flex w-full items-center gap-4 border-b border-border py-5 text-left transition-all duration-300 hover:bg-muted/40 hover:pl-3 sm:gap-6 md:py-6"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5 }}
     >
       {/* Index */}
-      <span className="hidden shrink-0 font-mono text-xs text-muted-foreground/30 sm:block">
+      <span className="hidden shrink-0 font-mono text-xs text-muted-foreground/60 sm:block">
         {num} / {total}
       </span>
 
@@ -142,7 +142,7 @@ function WorkRow({
       </span>
 
       {/* Description */}
-      <span className="hidden flex-1 text-sm text-muted-foreground/60 transition-colors group-hover:text-muted-foreground lg:block">
+      <span className="hidden flex-1 text-sm text-muted-foreground transition-colors group-hover:text-foreground lg:block">
         {project.description}
       </span>
 
@@ -151,7 +151,7 @@ function WorkRow({
         {project.tech.slice(0, 3).map((t) => (
           <span
             key={t}
-            className="rounded bg-white/4 px-2 py-0.5 font-mono text-[10px] text-muted-foreground/40 transition-colors group-hover:text-muted-foreground/70"
+            className="rounded-md border border-border bg-card px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors group-hover:border-primary/40 group-hover:text-foreground"
           >
             {t}
           </span>
@@ -159,7 +159,7 @@ function WorkRow({
       </span>
 
       {/* Arrow */}
-      <span className="ml-auto shrink-0 text-muted-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-foreground sm:ml-0">
+      <span className="ml-auto shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-1 group-hover:text-foreground sm:ml-0">
         →
       </span>
     </motion.button>
@@ -191,7 +191,7 @@ export function Projects() {
         </motion.h2>
 
         {/* Work list */}
-        <div className="border-t border-white/4">
+        <div className="border-t border-border">
           {projects.map((project, i) => (
             <WorkRow
               key={project.title}

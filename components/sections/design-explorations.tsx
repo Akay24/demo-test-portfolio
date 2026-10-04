@@ -105,7 +105,7 @@ export function DesignExplorations() {
                   {/* Top Bar: Number & Style Tag */}
                   <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
                     <span className="font-semibold text-primary">#{item.number}</span>
-                    <span className="rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                    <span className="rounded-md border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
                       {item.style}
                     </span>
                   </div>
@@ -116,7 +116,7 @@ export function DesignExplorations() {
                   </h3>
 
                   {/* Description */}
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-3">
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-3">
                     {item.description}
                   </p>
 
@@ -125,7 +125,7 @@ export function DesignExplorations() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded border border-border/60 bg-muted/80 px-2 py-0.5 font-mono text-[9px] text-muted-foreground"
+                        className="rounded border border-border bg-muted/80 px-2 py-0.5 font-mono text-xs text-muted-foreground"
                       >
                         {tag}
                       </span>
@@ -135,8 +135,8 @@ export function DesignExplorations() {
 
                 {/* Footer Bar: Link */}
                 <div className="mt-5 flex items-center justify-between border-t border-border pt-3">
-                  <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-muted-foreground transition-colors group-hover:text-primary">
-                    <Globe size={12} />
+                  <div className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors group-hover:text-primary">
+                    <Globe size={13} />
                     <span>Live Website</span>
                   </div>
                   <ExternalLink

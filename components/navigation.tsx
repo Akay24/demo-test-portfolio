@@ -72,10 +72,10 @@ export function Navigation() {
 
       {/* Corner decorations */}
       <div className="pointer-events-none fixed inset-0 z-55" aria-hidden="true">
-        <div className="absolute left-4 top-4 h-4 w-4 border-l border-t border-white/8" />
-        <div className="absolute right-4 top-4 h-4 w-4 border-r border-t border-white/8" />
-        <div className="absolute bottom-4 left-4 h-4 w-4 border-b border-l border-white/8" />
-        <div className="absolute bottom-4 right-4 h-4 w-4 border-b border-r border-white/8" />
+        <div className="absolute left-4 top-4 h-4 w-4 border-l border-t border-foreground/15" />
+        <div className="absolute right-4 top-4 h-4 w-4 border-r border-t border-foreground/15" />
+        <div className="absolute bottom-4 left-4 h-4 w-4 border-b border-l border-foreground/15" />
+        <div className="absolute bottom-4 right-4 h-4 w-4 border-b border-r border-foreground/15" />
       </div>
 
       {/* Header */}
@@ -83,7 +83,7 @@ export function Navigation() {
         className={cn(
           "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-background/80 py-3 backdrop-blur-xl"
+            ? "border-b border-border/50 bg-background/80 py-3 backdrop-blur-xl"
             : "bg-transparent py-5"
         )}
         initial={{ y: -100, opacity: 0 }}
@@ -99,8 +99,8 @@ export function Navigation() {
             whileTap={{ scale: 0.98 }}
             aria-label="Scroll to top"
           >
-            <span className="flex h-2 w-2 items-center justify-center rounded-full bg-primary" />
-            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground/60 transition-colors group-hover:text-foreground">
+            <span className="flex h-2.5 w-2.5 items-center justify-center rounded-full bg-primary" />
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-foreground">
               {siteConfig.name.toUpperCase()} · SWE
             </span>
           </motion.button>
@@ -114,12 +114,12 @@ export function Navigation() {
                   className={cn(
                     "group relative flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs transition-colors",
                     activeSection === link.href
-                      ? "text-foreground"
-                      : "text-muted-foreground/50 hover:text-foreground"
+                      ? "bg-muted font-semibold text-foreground"
+                      : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                   )}
                   aria-current={activeSection === link.href ? "true" : undefined}
                 >
-                  <span className="text-primary/50">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-primary/70">{String(i + 1).padStart(2, "0")}</span>
                   <span>{link.label}</span>
                 </button>
               </li>

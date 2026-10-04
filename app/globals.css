@@ -99,6 +99,17 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    font-size: 16.5px;
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 1440px) {
+    html {
+      font-size: 19px;
+    }
   }
 }
 

@@ -1,80 +1,52 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/data";
 import { heroStagger, fadeInUp } from "@/lib/animations";
 import { AnimatedBackground } from "@/components/animated-background";
 
-/* ── Scramble text hook ── */
-function useScrambleText(finalText: string, delay = 300) {
-  const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const compactText = finalText.replace(/\s+/g, "");
-  const createSeededText = useCallback(
-    () =>
-      compactText
-        .split("")
-        .map((char, index) => glyphs[(char.charCodeAt(0) + index * 13) % glyphs.length])
-        .join(""),
-    [compactText]
+/* ── Interactive single character with targeted hover transition ── */
+function InteractiveLetter({ char }: { char: string }) {
+  const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+  const [displayChar, setDisplayChar] = useState(char);
+  const [isHovered, setIsHovered] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const handleMouseEnter = () => {
+    if (char === " ") return;
+    setIsHovered(true);
+    if (timerRef.current) clearInterval(timerRef.current);
+    let count = 0;
+    timerRef.current = setInterval(() => {
+      count++;
+      if (count > 3) {
+        if (timerRef.current) clearInterval(timerRef.current);
+        setDisplayChar(char);
+        setIsHovered(false);
+      } else {
+        setDisplayChar(glyphs[Math.floor(Math.random() * glyphs.length)]);
+      }
+    }, 45);
+  };
+
+  if (char === " ") {
+    return <span className="inline-block w-3">&nbsp;</span>;
+  }
+
+  return (
+    <motion.span
+      className="interactive-hover inline-block cursor-default select-none transition-colors duration-150"
+      onMouseEnter={handleMouseEnter}
+      animate={{
+        y: isHovered ? -5 : 0,
+        color: isHovered ? "var(--primary)" : "inherit",
+      }}
+      transition={{ type: "spring", stiffness: 450, damping: 22 }}
+    >
+      {displayChar}
+    </motion.span>
   );
-  const createRandomText = useCallback(
-    () =>
-      compactText
-        .split("")
-        .map(() => glyphs[Math.floor(Math.random() * glyphs.length)])
-        .join(""),
-    [compactText]
-  );
-
-  const [display, setDisplay] = useState(() => createSeededText());
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const clearTimers = useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, []);
-
-  const scramble = useCallback(() => {
-    clearTimers();
-
-    const chars = compactText.split("");
-    const queue = chars.map((ch, i) => ({
-      final: ch,
-      start: Math.floor(Math.random() * 15),
-      end: Math.floor(Math.random() * 15) + 15 + i * 3,
-    }));
-    let frame = 0;
-    const maxFrame = Math.max(...queue.map((q) => q.end));
-
-    setDisplay(createRandomText());
-
-    intervalRef.current = setInterval(() => {
-      const output = queue
-        .map((q) => {
-          if (frame >= q.end) return q.final;
-          return glyphs[Math.floor(Math.random() * glyphs.length)];
-        })
-        .join("");
-      setDisplay(output);
-      frame++;
-      if (frame > maxFrame) clearTimers();
-    }, 30);
-  }, [clearTimers, compactText, createRandomText]);
-
-  useEffect(() => {
-    timeoutRef.current = setTimeout(scramble, delay);
-    return clearTimers;
-  }, [clearTimers, delay, scramble]);
-
-  return { display, rescramble: scramble };
 }
 
 /* ── Ticker Marquee ── */
@@ -104,7 +76,7 @@ function Ticker() {
             className={`mx-4 font-mono text-xs uppercase tracking-widest ${
               item === "·"
                 ? "text-primary"
-                : "text-muted-foreground/50"
+                : "text-muted-foreground/60"
             }`}
           >
             {item === "·" ? (
@@ -121,7 +93,6 @@ function Ticker() {
 
 /* ── Hero Section ── */
 export function Hero() {
-  const { display: nameDisplay, rescramble } = useScrambleText(siteConfig.name, 400);
   const nameWords = siteConfig.name.split(" ");
 
   const handleScrollTo = (id: string) => {
@@ -130,7 +101,7 @@ export function Hero() {
   };
 
   return (
-    <div className="flex min-h-svh flex-col">
+    <div className="flex min-h-svh flex-col justify-between">
       <section
         id="hero"
         className="relative flex flex-1 flex-col justify-between overflow-hidden"
@@ -146,7 +117,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-            <span className="text-primary/80">00</span>
+            <span className="text-primary/80 font-bold">00</span>
             <span className="h-px w-8 bg-muted-foreground/20" />
             <span>Portfolio · {new Date().getFullYear()}</span>
           </div>
@@ -154,55 +125,45 @@ export function Hero() {
 
         {/* Main hero content */}
         <motion.div
-          className="relative z-10 mx-auto w-full max-w-6xl px-6"
+          className="relative z-10 mx-auto w-full max-w-6xl px-6 py-6"
           variants={heroStagger}
           initial="hidden"
           animate="visible"
         >
-          {/* Name — scramble effect */}
+          {/* Name — precise per-letter hover transition */}
           <motion.h1
             variants={fadeInUp}
-            className="mb-6 cursor-default font-serif text-[clamp(3.5rem,11vw,10rem)] font-normal leading-[0.86] tracking-[-0.03em]"
-            onMouseEnter={rescramble}
+            className="mb-6 cursor-default font-serif text-[clamp(3.75rem,10.5vw,9.5rem)] font-normal leading-[0.88] tracking-[-0.03em] text-foreground"
             aria-label={siteConfig.name}
           >
-            {nameWords.map((word, wordIndex) => {
-              const displayWord = nameDisplay.slice(
-                nameWords.slice(0, wordIndex).reduce((count, current) => count + current.length, 0),
-                nameWords.slice(0, wordIndex).reduce((count, current) => count + current.length, 0) + word.length
-              );
-
-              return (
-                <span key={`${word}-${wordIndex}`} className="block whitespace-nowrap">
-                  {displayWord.split("").map((char, charIndex) => (
-                    <span
-                      key={`${wordIndex}-${charIndex}`}
-                      className="inline-block transition-colors duration-200"
-                    >
-                      {char}
-                    </span>
-                  ))}
-                </span>
-              );
-            })}
+            {nameWords.map((word, wordIndex) => (
+              <span key={`${word}-${wordIndex}`} className="block whitespace-nowrap">
+                {word.split("").map((char, charIndex) => (
+                  <InteractiveLetter
+                    key={`${wordIndex}-${charIndex}`}
+                    char={char}
+                  />
+                ))}
+              </span>
+            ))}
           </motion.h1>
 
           {/* Role + Tagline */}
           <motion.div variants={fadeInUp} className="mb-6 max-w-2xl">
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
-              <span className="text-foreground">{siteConfig.role}</span>
+              <span className="text-foreground font-medium">{siteConfig.role}</span>
               {" — "}
               {siteConfig.tagline}
             </p>
           </motion.div>
 
           {/* Status badge */}
-          <motion.div variants={fadeInUp} className="mb-12 flex items-center gap-3">
-            <span className="relative flex h-2 w-2">
+          <motion.div variants={fadeInUp} className="mb-10 flex items-center gap-3">
+            <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
             </span>
-            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-medium">
               Available for opportunities
             </span>
           </motion.div>
@@ -214,7 +175,7 @@ export function Hero() {
           >
             <motion.button
               onClick={() => handleScrollTo("#projects")}
-              className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 text-sm font-medium text-background transition-all hover:bg-foreground/90"
+              className="group inline-flex h-12 items-center gap-2 rounded-xl bg-foreground px-7 text-sm font-semibold text-background transition-all hover:bg-foreground/90 shadow-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -224,7 +185,7 @@ export function Hero() {
 
             <motion.button
               onClick={() => handleScrollTo("#contact")}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-border px-6 text-sm font-medium text-foreground transition-all hover:border-foreground/20 hover:bg-muted/80"
+              className="inline-flex h-12 items-center gap-2 rounded-xl border border-border px-7 text-sm font-semibold text-foreground transition-all hover:border-foreground/30 hover:bg-muted/80"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -238,16 +199,16 @@ export function Hero() {
           className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <div className="flex items-center justify-between text-xs text-muted-foreground/40">
+          <div className="flex items-center justify-between text-xs text-muted-foreground/50">
             <span className="font-mono">Scroll ↓</span>
             <motion.button
               onClick={() => handleScrollTo("#about")}
-              className="group flex items-center gap-2 transition-colors hover:text-muted-foreground"
+              className="group flex items-center gap-2 transition-colors hover:text-foreground"
               aria-label="Scroll to about section"
             >
-              <span className="h-px w-8 bg-muted-foreground/20 transition-all group-hover:w-12 group-hover:bg-muted-foreground/40" />
+              <span className="h-px w-8 bg-muted-foreground/20 transition-all group-hover:w-12 group-hover:bg-primary" />
             </motion.button>
           </div>
         </motion.div>

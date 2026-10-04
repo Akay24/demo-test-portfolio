@@ -78,7 +78,7 @@ function ScrambleLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group flex items-center justify-between border-b border-white/4 py-5 transition-all hover:pl-2 md:py-6"
+      className="group flex items-center justify-between border-b border-border py-5 transition-all hover:pl-2 md:py-6"
       onMouseEnter={scramble}
       onMouseLeave={reset}
     >
@@ -87,14 +87,14 @@ function ScrambleLink({
           <span
             key={i}
             className={
-              c !== label[i] ? "text-primary/50" : ""
+              c !== label[i] ? "text-primary/70" : ""
             }
           >
             {c}
           </span>
         ))}
       </span>
-      <span className="text-lg text-muted-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-foreground">
+      <span className="text-lg text-muted-foreground/50 transition-all group-hover:translate-x-1 group-hover:text-foreground">
         ↗
       </span>
     </a>
@@ -124,7 +124,7 @@ export function Contact() {
     <SectionWrapper id="contact">
       {/* Eyebrow */}
       <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-        <span className="text-primary/80">05</span>
+        <span className="text-primary/80 font-bold">06</span>
         <span className="h-px w-8 bg-muted-foreground/20" />
         <span>Contact</span>
       </motion.div>
@@ -139,7 +139,7 @@ export function Contact() {
       <div className="grid gap-16 md:grid-cols-2">
         {/* Social links — scramble on hover */}
         <motion.div variants={fadeInUp}>
-          <div className="border-t border-white/4">
+          <div className="border-t border-border">
             {socials.map((social) => (
               <ScrambleLink
                 key={social.name}
@@ -152,20 +152,20 @@ export function Contact() {
 
           {/* Email + Location */}
           <div className="mt-8 space-y-3">
-            <div className="font-mono text-xs text-muted-foreground/40">
-              <span className="uppercase tracking-widest">Email</span>
+            <div className="font-mono text-xs text-muted-foreground/70">
+              <span className="uppercase tracking-widest font-semibold">Email</span>
               {" — "}
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-foreground transition-colors hover:text-primary underline-offset-4 hover:underline"
               >
                 {siteConfig.email}
               </a>
             </div>
-            <div className="font-mono text-xs text-muted-foreground/40">
-              <span className="uppercase tracking-widest">Based</span>
+            <div className="font-mono text-xs text-muted-foreground/70">
+              <span className="uppercase tracking-widest font-semibold">Based</span>
               {" — "}
-              <span className="text-muted-foreground">{siteConfig.location}</span>
+              <span className="text-foreground">{siteConfig.location}</span>
             </div>
           </div>
         </motion.div>
@@ -180,7 +180,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="contact-name"
-                className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40"
+                className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold"
               >
                 Name
               </label>
@@ -193,13 +193,13 @@ export function Contact() {
                   setFormState((s) => ({ ...s, name: e.target.value }))
                 }
                 placeholder="Your name"
-                className="h-11 w-full border-b border-white/6 bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+                className="h-11 w-full border-b border-border bg-transparent px-0 font-mono text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 transition-colors focus:border-primary focus:outline-none"
               />
             </div>
             <div>
               <label
                 htmlFor="contact-email"
-                className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40"
+                className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold"
               >
                 Email
               </label>
@@ -212,7 +212,7 @@ export function Contact() {
                   setFormState((s) => ({ ...s, email: e.target.value }))
                 }
                 placeholder="you@example.com"
-                className="h-11 w-full border-b border-white/6 bg-transparent px-0 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+                className="h-11 w-full border-b border-border bg-transparent px-0 font-mono text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 transition-colors focus:border-primary focus:outline-none"
               />
             </div>
           </div>
@@ -220,7 +220,7 @@ export function Contact() {
           <div>
             <label
               htmlFor="contact-message"
-              className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40"
+              className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold"
             >
               Message
             </label>
@@ -233,7 +233,7 @@ export function Contact() {
                 setFormState((s) => ({ ...s, message: e.target.value }))
               }
               placeholder="Tell me about your project..."
-              className="w-full resize-none border-b border-white/6 bg-transparent px-0 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 transition-colors focus:border-primary/50 focus:outline-none"
+              className="w-full resize-none border-b border-border bg-transparent px-0 py-3 font-mono text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 transition-colors focus:border-primary focus:outline-none"
             />
           </div>
 

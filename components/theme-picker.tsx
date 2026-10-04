@@ -92,20 +92,20 @@ export function ThemePicker() {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-white/5"
+        className="group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-muted"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label="Choose theme"
       >
         <span
-          className="h-2.5 w-2.5 rounded-full ring-1 ring-white/20"
+          className="h-2.5 w-2.5 rounded-full ring-1 ring-border"
           style={{ background: activeTheme.color }}
         />
-        <span className="hidden font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 transition-colors group-hover:text-foreground sm:block">
+        <span className="hidden font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors group-hover:text-foreground sm:block">
           {activeTheme.name}
         </span>
         <svg
-          className={`h-2 w-2 text-muted-foreground/40 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`h-2.5 w-2.5 text-muted-foreground/60 transition-transform ${isOpen ? "rotate-180" : ""}`}
           viewBox="0 0 8 5"
           fill="none"
           aria-hidden="true"
@@ -124,7 +124,7 @@ export function ThemePicker() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute right-0 top-full z-70 mt-2 w-48 overflow-hidden rounded-xl border border-white/6 bg-background/95 p-1 shadow-2xl backdrop-blur-xl"
+            className="absolute right-0 top-full z-70 mt-2 w-48 overflow-hidden rounded-xl border border-border bg-card/95 p-1.5 shadow-2xl backdrop-blur-xl"
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
@@ -133,7 +133,7 @@ export function ThemePicker() {
             aria-label="Theme"
           >
             {/* Dark themes */}
-            <div className="px-2 pb-1 pt-2 font-mono text-[9px] uppercase tracking-widest text-muted-foreground/30">
+            <div className="px-2 pb-1 pt-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold">
               Dark
             </div>
             {darkThemes.map((theme) => (
@@ -142,28 +142,28 @@ export function ThemePicker() {
                 onClick={() => selectTheme(theme)}
                 className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
                   activeTheme.id === theme.id
-                    ? "bg-white/6 text-foreground"
-                    : "text-muted-foreground hover:bg-white/3 hover:text-foreground"
+                    ? "bg-muted font-semibold text-foreground"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 }`}
                 role="option"
                 aria-selected={activeTheme.id === theme.id}
               >
                 <span
-                  className="h-3 w-3 shrink-0 rounded-full ring-1 ring-white/10"
+                  className="h-3 w-3 shrink-0 rounded-full ring-1 ring-border"
                   style={{ background: theme.color }}
                 />
                 <span className="font-mono text-xs">{theme.name}</span>
                 {activeTheme.id === theme.id && (
-                  <span className="ml-auto text-[10px] text-primary">●</span>
+                  <span className="ml-auto text-xs text-primary">●</span>
                 )}
               </button>
             ))}
 
             {/* Divider */}
-            <div className="my-1 h-px bg-white/4" />
+            <div className="my-1.5 h-px bg-border" />
 
             {/* Light themes */}
-            <div className="px-2 pb-1 pt-1 font-mono text-[9px] uppercase tracking-widest text-muted-foreground/30">
+            <div className="px-2 pb-1 pt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold">
               Light
             </div>
             {lightThemes.map((theme) => (
@@ -172,19 +172,19 @@ export function ThemePicker() {
                 onClick={() => selectTheme(theme)}
                 className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
                   activeTheme.id === theme.id
-                    ? "bg-white/6 text-foreground"
-                    : "text-muted-foreground hover:bg-white/3 hover:text-foreground"
+                    ? "bg-muted font-semibold text-foreground"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 }`}
                 role="option"
                 aria-selected={activeTheme.id === theme.id}
               >
                 <span
-                  className="h-3 w-3 shrink-0 rounded-full ring-1 ring-black/10"
+                  className="h-3 w-3 shrink-0 rounded-full ring-1 ring-border"
                   style={{ background: theme.color }}
                 />
                 <span className="font-mono text-xs">{theme.name}</span>
                 {activeTheme.id === theme.id && (
-                  <span className="ml-auto text-[10px] text-primary">●</span>
+                  <span className="ml-auto text-xs text-primary">●</span>
                 )}
               </button>
             ))}
@@ -235,7 +235,7 @@ export function ThemeFab() {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-white/8 bg-background/80 shadow-xl backdrop-blur-xl transition-transform hover:scale-105"
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card/90 shadow-xl backdrop-blur-xl transition-transform hover:scale-105"
         aria-label="Choose theme"
         aria-expanded={isOpen}
       >
@@ -254,7 +254,7 @@ export function ThemeFab() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute bottom-full right-0 mb-3 flex flex-wrap gap-2 rounded-2xl border border-white/6 bg-background/95 p-3 shadow-2xl backdrop-blur-xl"
+            className="absolute bottom-full right-0 mb-3 flex flex-wrap gap-2 rounded-2xl border border-border bg-card/95 p-3 shadow-2xl backdrop-blur-xl"
             style={{ width: "220px" }}
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -268,7 +268,7 @@ export function ThemeFab() {
                 className={`h-8 w-8 rounded-full ring-2 transition-all ${
                   activeTheme.id === theme.id
                     ? "ring-primary scale-110"
-                    : "ring-transparent hover:ring-white/20 hover:scale-105"
+                    : "ring-transparent hover:ring-border hover:scale-105"
                 }`}
                 style={{ background: theme.color }}
                 aria-label={theme.name}

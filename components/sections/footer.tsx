@@ -10,12 +10,12 @@ export function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="border-t border-white/4 py-8"
+      className="border-t border-border py-8"
     >
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           variants={fadeInUp}
-          className="flex flex-col items-center justify-between gap-4 font-mono text-[11px] text-muted-foreground/40 sm:flex-row"
+          className="flex flex-col items-center justify-between gap-4 font-mono text-xs text-muted-foreground/70 sm:flex-row"
         >
           <span>© {new Date().getFullYear()} · {siteConfig.name}</span>
           <div className="flex gap-6">
@@ -25,7 +25,7 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="uppercase tracking-widest transition-colors hover:text-foreground"
+                className="uppercase tracking-widest transition-colors hover:text-foreground hover:text-primary"
                 aria-label={s.name}
               >
                 {s.name}

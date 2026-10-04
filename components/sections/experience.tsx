@@ -10,7 +10,7 @@ export function Experience() {
     <SectionWrapper id="experience">
       {/* Eyebrow */}
       <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-        <span className="text-primary/80">04</span>
+        <span className="text-primary/80 font-bold">05</span>
         <span className="h-px w-8 bg-muted-foreground/20" />
         <span>Experience</span>
       </motion.div>
@@ -34,25 +34,25 @@ export function Experience() {
             transition={{ delay: index * 0.1, duration: 0.5 }}
           >
             {/* When */}
-            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground/40 md:col-span-3">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground/60 md:col-span-3">
               {exp.period}
             </div>
 
             {/* What */}
             <div className="md:col-span-6">
-              <h3 className="mb-1 text-base font-semibold text-foreground">
-                {exp.role}, <em className="font-normal text-primary/80">{exp.company}</em>
+              <h3 className="mb-1 text-base sm:text-lg font-semibold text-foreground">
+                {exp.role}, <em className="font-normal text-primary/90">{exp.company}</em>
               </h3>
-              <p className="mb-4 text-sm text-muted-foreground">
+              <p className="mb-4 text-sm sm:text-base text-muted-foreground">
                 {exp.description}
               </p>
               <ul className="space-y-1.5">
                 {exp.highlights.map((h) => (
                   <li
                     key={h}
-                    className="flex items-start gap-2 text-sm text-muted-foreground/60 transition-colors group-hover:text-muted-foreground"
+                    className="flex items-start gap-2 text-sm text-muted-foreground/75 transition-colors group-hover:text-muted-foreground"
                   >
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/40" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                     {h}
                   </li>
                 ))}
@@ -60,7 +60,7 @@ export function Experience() {
             </div>
 
             {/* Where */}
-            <div className="font-mono text-xs text-muted-foreground/30 md:col-span-3 md:text-right">
+            <div className="font-mono text-xs text-muted-foreground/60 md:col-span-3 md:text-right">
               {exp.location}
             </div>
           </motion.div>
@@ -72,7 +72,7 @@ export function Experience() {
         variants={fadeInUp}
         className="mt-16"
       >
-        <h3 className="mb-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
+        <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold">
           Education
         </h3>
         <div className="space-y-0">
@@ -85,11 +85,11 @@ export function Experience() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.4 }}
             >
-              <div className="font-mono text-xs text-muted-foreground/40 md:col-span-3">
+              <div className="font-mono text-xs text-muted-foreground/60 md:col-span-3">
                 {edu.period}
               </div>
               <div className="md:col-span-9">
-                <span className="text-sm font-medium text-foreground/80">{edu.degree}</span>
+                <span className="text-sm font-medium text-foreground">{edu.degree}</span>
                 <span className="text-sm text-muted-foreground"> — </span>
                 <em className="text-sm text-muted-foreground">{edu.institution}</em>
               </div>
@@ -103,14 +103,14 @@ export function Experience() {
         variants={fadeInUp}
         className="mt-12"
       >
-        <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
+        <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground/70 font-semibold">
           Certifications
         </h3>
         <div className="flex flex-wrap gap-2">
           {certifications.map((cert) => (
             <span
               key={cert}
-              className="rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               {cert}
             </span>
