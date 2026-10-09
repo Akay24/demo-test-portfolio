@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Filter, Globe } from "lucide-react";
+import { GithubIcon } from "@/components/icons";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { designExplorations } from "@/lib/data";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -87,19 +88,15 @@ export function DesignExplorations() {
         >
           <AnimatePresence mode="popLayout">
             {filteredDesigns.map((item) => (
-              <motion.a
+              <motion.div
                 key={item.id}
                 layout
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 variants={fadeInUp}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
-                className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-card hover:shadow-lg hover:shadow-primary/5 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                aria-label={`Visit ${item.name} (${item.style}) live website`}
+                className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-card hover:shadow-lg hover:shadow-primary/5"
               >
                 <div>
                   {/* Top Bar: Number & Style Tag */}
@@ -112,7 +109,14 @@ export function DesignExplorations() {
 
                   {/* Title */}
                   <h3 className="mt-3.5 text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {item.name}
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline focus:outline-none"
+                    >
+                      {item.name}
+                    </a>
                   </h3>
 
                   {/* Description */}
@@ -133,19 +137,36 @@ export function DesignExplorations() {
                   </div>
                 </div>
 
-                {/* Footer Bar: Link */}
+                {/* Footer Bar: Source Code & Live Website Links */}
                 <div className="mt-5 flex items-center justify-between border-t border-border pt-3">
-                  <div className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors group-hover:text-primary">
+                  <a
+                    href={item.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors hover:text-foreground"
+                    aria-label={`View ${item.name} source code on GitHub`}
+                  >
+                    <GithubIcon size={13} />
+                    <span>Source</span>
+                  </a>
+
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground transition-colors hover:text-primary"
+                    aria-label={`Launch ${item.name} live application`}
+                  >
                     <Globe size={13} />
-                    <span>Live Website</span>
-                  </div>
-                  <ExternalLink
-                    size={14}
-                    className="text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
-                    aria-hidden="true"
-                  />
+                    <span>Launch</span>
+                    <ExternalLink
+                      size={13}
+                      className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>

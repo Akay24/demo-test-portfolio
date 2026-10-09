@@ -106,7 +106,7 @@ export function Navigation() {
           </motion.button>
 
           {/* Desktop Nav */}
-          <ul className="hidden items-center gap-1 md:flex" role="list">
+          <ul className="hidden items-center gap-1 lg:flex" role="list">
             {navLinks.map((link, i) => (
               <li key={link.href}>
                 <button
@@ -128,12 +128,12 @@ export function Navigation() {
 
           {/* Theme Picker + Mobile Toggle */}
           <div className="flex items-center gap-2">
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <ThemePicker />
             </div>
           <button
             onClick={toggleMobileMenu}
-            className="relative z-50 flex flex-col gap-1 p-2 md:hidden"
+            className="relative z-50 flex flex-col gap-1 p-2 lg:hidden"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -163,7 +163,7 @@ export function Navigation() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.nav
-          className="fixed inset-0 z-40 flex flex-col items-start justify-center gap-4 bg-background px-12 md:hidden"
+          className="fixed inset-0 z-40 flex flex-col items-start justify-center gap-4 bg-background px-12 lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
