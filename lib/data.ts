@@ -230,10 +230,10 @@ export const experience: Experience[] = [
   {
     company: "Spotline, Inc.",
     role: "Software Developer",
-    period: "Oct 2024 — Present",
-    location: "Bhubaneswar",
-    description:
-      "Designing scalable backend microservices and leading test automation initiatives for enterprise-grade products.",
+      period: "Oct 2024 — Present",
+        location: "Bhubaneswar",
+          description:
+  "Designing scalable backend microservices and leading test automation initiatives for enterprise-grade products.",
     highlights: [
       "Designed and implemented scalable backend microservices using Python and Node.js (Express), optimizing MongoDB queries to reduce API latency by 23%",
       "Led test automation with Robot Framework, integrating into Jenkins CI/CD pipelines, reducing manual regression testing by 65%",
@@ -242,13 +242,13 @@ export const experience: Experience[] = [
       "Bridged technical communication for global clients, ensuring 100% alignment on deliverable goals",
     ],
   },
-  {
-    company: "QSpiders",
+{
+  company: "QSpiders",
     role: "Full-Stack Developer",
-    period: "Jan 2024 — Oct 2024",
-    location: "Bhubaneswar",
-    description:
-      "Engineered dynamic full-stack applications using the MERN Stack, delivering robust end-to-end solutions.",
+      period: "Jan 2024 — Oct 2024",
+        location: "Bhubaneswar",
+          description:
+  "Engineered dynamic full-stack applications using the MERN Stack, delivering robust end-to-end solutions.",
     highlights: [
       "Built full-stack applications with MongoDB, Express.js, React, and Node.js",
       "Architected scalable RESTful APIs using MVC design patterns",
@@ -256,39 +256,39 @@ export const experience: Experience[] = [
       "Applied advanced Data Structures and SQL strategies to streamline system workflows",
     ],
   },
-  {
-    company: "Oasis Infobyte",
+{
+  company: "Oasis Infobyte",
     role: "Data Science Intern",
-    period: "Jul 2023 — Aug 2023",
-    location: "Delhi, India",
-    description:
-      "Performed data analysis, built predictive models, and documented insights through Jupyter Notebook workflows.",
+      period: "Jul 2023 — Aug 2023",
+        location: "Delhi, India",
+          description:
+  "Performed data analysis, built predictive models, and documented insights through Jupyter Notebook workflows.",
     highlights: [
       "Performed end-to-end data cleaning, transformation, and feature preparation using Python",
       "Implemented predictive models with Scikit-learn, improving performance through iterative tuning",
       "Analyzed model outcomes using RMSE and MSE regression metrics",
     ],
   },
-  {
-    company: "Bharat Intern",
+{
+  company: "Bharat Intern",
     role: "Data Science Intern",
-    period: "Jun 2023 — Jul 2023",
-    location: "Bhopal",
-    description:
-      "Conducted data analysis and developed machine learning models for prediction and exploratory analysis.",
+      period: "Jun 2023 — Jul 2023",
+        location: "Bhopal",
+          description:
+  "Conducted data analysis and developed machine learning models for prediction and exploratory analysis.",
     highlights: [
       "Conducted data analysis and preprocessing using Python, Pandas, and NumPy",
       "Developed ML models using Scikit-learn for prediction and exploratory analysis",
       "Utilized Jupyter Notebook for data visualization and result validation",
     ],
   },
-  {
-    company: "AICTE NEAT",
+{
+  company: "AICTE NEAT",
     role: "Summer Intern",
-    period: "May 2023 — Jul 2023",
-    location: "United States",
-    description:
-      "Gained hands-on exposure to AI/ML concepts and AWS services for experimentation and model deployment.",
+      period: "May 2023 — Jul 2023",
+        location: "United States",
+          description:
+  "Gained hands-on exposure to AI/ML concepts and AWS services for experimentation and model deployment.",
     highlights: [
       "Hands-on exposure to AI/ML concepts including NLP, computer vision, and predictive modeling",
       "Worked with AWS services for experimentation and model deployment basics",

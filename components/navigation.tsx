@@ -106,7 +106,7 @@ export function Navigation() {
           </motion.button>
 
           {/* Desktop Nav */}
-          <ul className="hidden items-center gap-1 lg:flex" role="list">
+          <ul className="hidden items-center gap-1 md:flex" role="list">
             {navLinks.map((link, i) => (
               <li key={link.href}>
                 <button
@@ -128,34 +128,34 @@ export function Navigation() {
 
           {/* Theme Picker + Mobile Toggle */}
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <ThemePicker />
             </div>
-          <button
-            onClick={toggleMobileMenu}
-            className="relative z-50 flex flex-col gap-1 p-2 lg:hidden"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-          >
-            <span
-              className={cn(
-                "block h-px w-5 bg-foreground transition-all duration-300",
-                isMobileMenuOpen && "translate-y-1.25 rotate-45"
-              )}
-            />
-            <span
-              className={cn(
-                "block h-px w-5 bg-foreground transition-all duration-300",
-                isMobileMenuOpen && "opacity-0"
-              )}
-            />
-            <span
-              className={cn(
-                "block h-px w-5 bg-foreground transition-all duration-300",
-                isMobileMenuOpen && "-translate-y-1.25 -rotate-45"
-              )}
-            />
-          </button>
+            <button
+              onClick={toggleMobileMenu}
+              className="relative z-50 flex flex-col gap-1 p-2 md:hidden"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span
+                className={cn(
+                  "block h-px w-5 bg-foreground transition-all duration-300",
+                  isMobileMenuOpen && "translate-y-1.25 rotate-45"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px w-5 bg-foreground transition-all duration-300",
+                  isMobileMenuOpen && "opacity-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px w-5 bg-foreground transition-all duration-300",
+                  isMobileMenuOpen && "-translate-y-1.25 -rotate-45"
+                )}
+              />
+            </button>
           </div>
         </nav>
       </motion.header>
@@ -163,7 +163,7 @@ export function Navigation() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.nav
-          className="fixed inset-0 z-40 flex flex-col items-start justify-center gap-4 bg-background px-12 lg:hidden"
+          className="fixed inset-0 z-40 flex flex-col items-start justify-center gap-4 bg-background px-12 md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
