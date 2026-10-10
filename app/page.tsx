@@ -6,6 +6,7 @@ import { DesignExplorations } from "@/components/sections/design-explorations";
 import { Experience } from "@/components/sections/experience";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { AiChatAssistant } from "@/components/ai-chat-assistant";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Experience />
       <Contact />
       <Footer />
+      <AiChatAssistant />
     </>
   );
 }

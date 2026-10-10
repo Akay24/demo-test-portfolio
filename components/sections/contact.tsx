@@ -2,10 +2,11 @@
 
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, CheckCircle2, Loader2 } from "lucide-react";
 import { siteConfig, socials } from "@/lib/data";
 import { fadeInUp } from "@/lib/animations";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { submitContactMessage } from "@/lib/supabase";
 
 /* ── Scramble link text on hover ── */
 const STATIC_CHARS = new Set([" ", "+", "·", ".", "-", ",", "@"]);
@@ -107,14 +108,30 @@ export function Contact() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Hello from ${formState.name}`);
-    const body = encodeURIComponent(
-      `${formState.message}\n\n—\n${formState.name}\n${formState.email}`
-    );
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+
+    const res = await submitContactMessage(formState);
+    setIsSubmitting(false);
+
+    if (res.success) {
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
+    } else {
+      // Fallback: trigger mailto so message is never lost
+      const subject = encodeURIComponent(`Hello from ${formState.name}`);
+      const body = encodeURIComponent(
+        `${formState.message}\n\n—\n${formState.name}\n${formState.email}`
+      );
+      window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+    }
   };
 
   return (
@@ -234,15 +251,37 @@ export function Contact() {
             />
           </div>
 
-          <motion.button
-            type="submit"
-            className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Send size={14} />
-            Send Message
-          </motion.button>
+          <div className="flex items-center gap-4">
+            <motion.button
+              type="submit"
+              disabled={isSubmitting}
+              className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90 disabled:opacity-50"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={14} className="animate-spin" />
+                  <span>Sending...</span>
+                </>
+              ) : submitted ? (
+                <>
+                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <span>Sent!</span>
+                </>
+              ) : (
+                <>
+                  <Send size={14} />
+                  <span>Send Message</span>
+                </>
+              )}
+            </motion.button>
+            {submitted && (
+              <span className="font-mono text-xs text-emerald-400">
+                Message saved! I&apos;ll be in touch soon.
+              </span>
+            )}
+          </div>
         </motion.form>
       </div>
     </SectionWrapper>

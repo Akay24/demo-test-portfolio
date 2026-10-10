@@ -219,7 +219,7 @@ export const projects: Project[] = [
     icon: Bot,
   },
   {
-    title: "CodeSentinel // Autonomous Issue Resolver",
+    title: "CodeSentinel",
     description:
       "LangGraph agentic state machine for automated bug triage, AST index search, and ephemeral sandbox validation.",
     longDescription:
@@ -261,7 +261,7 @@ export const projects: Project[] = [
     icon: ShieldCheck,
   },
   {
-    title: "ReportKit // Enterprise Document Service",
+    title: "ReportKit",
     description:
       "Asynchronous document generation microservice with Jinja2 template versioning, idempotency keys, and HMAC signed downloads.",
     longDescription:
@@ -302,7 +302,7 @@ export const projects: Project[] = [
     icon: FileText,
   },
   {
-    title: "Synthetic API Monitor & Incident Engine",
+    title: "Synthetic API Monitor",
     description:
       "High-frequency distributed API prober with SSRF perimeter guard, microsecond socket timing breakdown, and incident state machine.",
     longDescription:
@@ -345,7 +345,7 @@ export const projects: Project[] = [
     icon: Activity,
   },
   {
-    title: "GridLock CTF // Terminal Engine",
+    title: "GridLock CTF",
     description:
       "Interactive security terminal challenge with command parser, virtual Unix filesystem, and crypto decoders.",
     longDescription:
@@ -386,7 +386,7 @@ export const projects: Project[] = [
     icon: Terminal,
   },
   {
-    title: "Solarium FM // Space Weather Synthesizer",
+    title: "Solarium FM",
     description:
       "Astrophysical telemetry sonification station modulating a 4-voice ambient drone synthesizer via NOAA space data.",
     longDescription:
@@ -427,7 +427,7 @@ export const projects: Project[] = [
     icon: Radio,
   },
   {
-    title: "PixelQuest: Starbyte // 16-Bit Engine",
+    title: "PixelQuest: Starbyte",
     description:
       "Playable 2D canvas game loop with collision detection, retro chiptune audio, and an in-browser sprite editor.",
     longDescription:
@@ -639,7 +639,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "01-minimalism",
     number: "01",
-    name: "ArchVault // Monograph Studio",
+    name: "ArchVault — Monograph Studio",
     style: "Minimalism",
     description: "Architectural blueprint CAD viewer and spec sheet vault exploring stark monochrome balance and precise grid geometry.",
     url: "https://01-minimalism.vercel.app",
@@ -650,7 +650,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "02-maximalism",
     number: "02",
-    name: "FanzineOS // Maximalist Press",
+    name: "FanzineOS — Maximalist Press",
     style: "Maximalism",
     description: "High-density digital culture underground zine featuring overlapping kinetic typography, sticker-bombing, and audio loops.",
     url: "https://02-maximalism.vercel.app",
@@ -661,7 +661,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "03-futuristic",
     number: "03",
-    name: "OrbitalOps // Flight Dynamics Console",
+    name: "OrbitalOps — Flight Dynamics Console",
     style: "Futuristic / Sci-Fi",
     description: "Suborbital avionics flight dynamics console with real-time Keplerian orbital trajectory paths and HUD telemetry instrumentation.",
     url: "https://03-futuristic.vercel.app",
@@ -672,7 +672,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "04-vector-art",
     number: "04",
-    name: "AvatarCraft // Vector Mascot Engine",
+    name: "AvatarCraft — Vector Mascot Engine",
     style: "Vector Art",
     description: "Procedural SVG mascot customization studio built with modular vector primitives, layer sequencing, and high-res PNG export.",
     url: "https://04-vector-art.vercel.app",
@@ -683,7 +683,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "05-collage-art",
     number: "05",
-    name: "FestCrafter // Lineup Matrix & Pass",
+    name: "FestCrafter — Lineup Matrix & Pass",
     style: "Collage Art",
     description: "Dadaist festival lineup matrix and torn-paper pass generator featuring analog tape overlays, halftone textures, and grain filters.",
     url: "https://05-collage-art.vercel.app",
@@ -694,7 +694,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "06-retro",
     number: "06",
-    name: "GrooveTable // Hi-Fi Vinyl Lounge",
+    name: "GrooveTable — Hi-Fi Vinyl Lounge",
     style: "Retro 70s / 80s",
     description: "Analog turntable lounge with realistic RPM pitch control, tonearm needle drops, and Web Audio dust crackle synthesis.",
     url: "https://06-retro.vercel.app",
@@ -705,7 +705,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "07-cyberpunk",
     number: "07",
-    name: "GridLock CTF // Terminal Challenge",
+    name: "GridLock CTF — Terminal Challenge",
     style: "Cyberpunk",
     description: "Dystopian cybersecurity terminal challenge featuring real UNIX command interpreter, Caesar/XOR crypto decoders, and CRT phosphor audio.",
     url: "https://07-cyberpunk.vercel.app",
@@ -716,7 +716,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "08-pop-art",
     number: "08",
-    name: "DropComic // Halftone Webcomic Reader",
+    name: "DropComic — Halftone Webcomic Reader",
     style: "Pop Art",
     description: "Comic book reading engine inspired by Roy Lichtenstein, featuring procedural Ben-Day dot screens, action bubbles, and sound effect canvas.",
     url: "https://08-pop-art.vercel.app",
@@ -727,7 +727,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "09-glassmorphism",
     number: "09",
-    name: "PrismPulse // Latency Prober & Monitor",
+    name: "PrismPulse — Latency Prober & Monitor",
     style: "Glassmorphism",
     description: "Synthetic network latency prober and cloud health monitor built with frosted glass panels, HTTP fetch timings, and incident cards.",
     url: "https://09-glassmorphism.vercel.app",
@@ -738,7 +738,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "10-clay-style",
     number: "10",
-    name: "ClayFocus // Tactile Habit Sanctuary",
+    name: "ClayFocus — Tactile Habit Sanctuary",
     style: "Claymorphism",
     description: "Tactile Pomodoro and daily habit sanctuary crafted with pillowy drop shadows, squish animations, and ambient chime feedback.",
     url: "https://10-clay-style.vercel.app",
@@ -749,7 +749,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "11-pixel-art",
     number: "11",
-    name: "PixelQuest: Starbyte // 16-Bit Space RPG",
+    name: "PixelQuest: Starbyte — 16-Bit Space RPG",
     style: "Pixel Art",
     description: "16-bit retro action RPG featuring playable 60 FPS canvas game loop, collision physics, chiptune audio, and an in-browser sprite editor.",
     url: "https://11-pixel-art.vercel.app",
@@ -760,7 +760,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "12-editorial",
     number: "12",
-    name: "Monograph // Broadsheet & Margin Notes",
+    name: "Monograph — Broadsheet & Margin Notes",
     style: "Editorial",
     description: "Refined architectural publication with high-contrast serif typography, asymmetric broadsheet columns, and margin footnote drawer.",
     url: "https://12-editorial.vercel.app",
@@ -771,7 +771,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "13-y2k",
     number: "13",
-    name: "CyberSwap // Winamp P2P Audio Studio",
+    name: "CyberSwap — Winamp P2P Audio Studio",
     style: "Y2K Aesthetic",
     description: "Early-2000s skeuomorphic MP3 software replicating Winamp and Napster, with active playlist queues, track scrubbing, and simulated P2P downloads.",
     url: "https://13-y2k.vercel.app",
@@ -782,7 +782,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "14-swiss-design",
     number: "14",
-    name: "GridConf // International Typographic",
+    name: "GridConf — International Typographic",
     style: "Swiss Design",
     description: "International Typographic Style symposium with mathematical modular grids, objective hierarchy, and interactive conference badge studio.",
     url: "https://14-swiss-design.vercel.app",
@@ -793,7 +793,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "15-bohemian",
     number: "15",
-    name: "EarthCraft // Ceramic Pottery Studio",
+    name: "EarthCraft — Ceramic Pottery Studio",
     style: "Bohemian",
     description: "Artisan ceramics and glaze formulation studio with pyrometric cone firing schedules, thermal curves, and earthy aesthetic.",
     url: "https://15-bohemian.vercel.app",
@@ -804,7 +804,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "16-victorian-style",
     number: "16",
-    name: "Ashbourne & Co. // Botanical Formulary",
+    name: "Ashbourne & Co. — Botanical Formulary",
     style: "Victorian Heritage",
     description: "19th-century botanical apothecary and compounding formulary with herbarium browser, weight balance scale, and Latin prescription chits.",
     url: "https://16-victorian-style.vercel.app",
@@ -815,7 +815,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "17-graffiti",
     number: "17",
-    name: "RAWBLOCK // Aerosol Studio & Murals",
+    name: "RAWBLOCK — Aerosol Studio & Murals",
     style: "Graffiti / Street Art",
     description: "Digital spray paint creation studio with Gaussian particle dispersion, paint drip gravity simulation, aerosol hiss audio, and mural map.",
     url: "https://17-graffiti.vercel.app",
@@ -826,7 +826,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "18-aurora",
     number: "18",
-    name: "Solarium FM // Space Weather Drone Synth",
+    name: "Solarium FM — Space Weather Drone Synth",
     style: "Aurora Glow",
     description: "Real-time space weather sonification platform modulating a 4-voice ambient drone synthesizer and sine-harmonic canvas aurora ribbons.",
     url: "https://18-aurora.vercel.app",
@@ -837,7 +837,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "19-handwritten",
     number: "19",
-    name: "MarginNotes // Tactile Moleskine Notes",
+    name: "MarginNotes — Tactile Moleskine Notes",
     style: "Handwritten / Sketchbook",
     description: "Tactile notebook workspace with smooth quadratic Bézier curve ink drawing, multiplier highlighters, and leather margin tab pagination.",
     url: "https://19-handwritten.vercel.app",
@@ -848,7 +848,7 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "20-surreal-art",
     number: "20",
-    name: "The Other Side // Metaphysical Pavilion",
+    name: "The Other Side — Metaphysical Pavilion",
     style: "Surrealism",
     description: "Metaphysical exhibition featuring 3D perspective card flip Tarot oracle, subconscious dream journal, and 6Hz theta-wave binaural audio.",
     url: "https://20-surreal-art.vercel.app",

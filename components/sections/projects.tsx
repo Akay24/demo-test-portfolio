@@ -13,7 +13,7 @@ import {
   Lock,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
-import { projects, type Project, type ProjectPreviewLine } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { SectionWrapper } from "@/components/section-wrapper";
 
@@ -26,73 +26,7 @@ const categories = [
 
 type CategoryType = (typeof categories)[number];
 
-/* ── Embedded Telemetry / Terminal Snippet Box ── */
-function SnippetPreviewBox({ snippet }: { snippet: Project["previewSnippet"] }) {
-  const getBadgeColor = (type: Project["previewSnippet"]["type"]) => {
-    switch (type) {
-      case "terminal":
-        return "text-emerald-400 border-emerald-500/30 bg-emerald-500/10";
-      case "diff":
-        return "text-indigo-400 border-indigo-500/30 bg-indigo-500/10";
-      case "cache":
-        return "text-amber-400 border-amber-500/30 bg-amber-500/10";
-      case "waterfall":
-        return "text-sky-400 border-sky-500/30 bg-sky-500/10";
-      case "waveform":
-        return "text-cyan-400 border-cyan-500/30 bg-cyan-500/10";
-      case "metrics":
-        return "text-violet-400 border-violet-500/30 bg-violet-500/10";
-      default:
-        return "text-muted-foreground border-border bg-muted/20";
-    }
-  };
 
-  const getLineClass = (tone?: ProjectPreviewLine["tone"]) => {
-    switch (tone) {
-      case "success":
-        return "text-emerald-400 font-medium";
-      case "error":
-        return "text-rose-400 font-medium";
-      case "warn":
-        return "text-amber-300";
-      case "info":
-        return "text-sky-300";
-      case "accent":
-        return "text-violet-300 font-medium";
-      default:
-        return "text-slate-300";
-    }
-  };
-
-  return (
-    <div className="relative overflow-hidden rounded-xl border border-border/80 bg-[#070b12] p-3.5 font-mono text-[11px] sm:text-xs leading-relaxed shadow-inner">
-      <div className="mb-2 flex items-center justify-between border-b border-white/5 pb-2 text-[10px] text-muted-foreground">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-rose-500/80" />
-          <span className="h-2 w-2 rounded-full bg-amber-500/80" />
-          <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
-          <span className="ml-2 font-mono text-[11px] text-slate-300 font-medium truncate max-w-[190px] sm:max-w-xs">
-            {snippet.title}
-          </span>
-        </div>
-        <span
-          className={`rounded border px-1.5 py-0.5 text-[9px] uppercase tracking-wider font-semibold ${getBadgeColor(
-            snippet.type
-          )}`}
-        >
-          {snippet.type}
-        </span>
-      </div>
-      <div className="space-y-1 overflow-x-auto scrollbar-none py-0.5">
-        {snippet.lines.map((line, idx) => (
-          <div key={idx} className={`whitespace-pre font-mono ${getLineClass(line.tone)}`}>
-            {line.text}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /* ── Project Detail Modal ── */
 function ProjectModal({
@@ -194,13 +128,7 @@ function ProjectModal({
           </p>
         </div>
 
-        {/* Live Snippet / Telemetry Preview */}
-        <div className="mb-6">
-          <h4 className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/80 font-semibold">
-            Execution Preview
-          </h4>
-          <SnippetPreviewBox snippet={project.previewSnippet} />
-        </div>
+
 
         {/* Key Highlights */}
         <div className="mb-6 border-t border-border pt-6">
@@ -375,10 +303,7 @@ function BentoCard({
           {project.description}
         </p>
 
-        {/* Embedded Telemetry / Terminal Preview Snippet */}
-        <div className="mb-5">
-          <SnippetPreviewBox snippet={project.previewSnippet} />
-        </div>
+
 
         {/* Verified Metric Chips */}
         <div className="mb-5 grid grid-cols-3 gap-2">
