@@ -6,6 +6,14 @@ import {
   Wrench,
   TestTube,
   Mail,
+  Bot,
+  ShieldCheck,
+  FileText,
+  Activity,
+  Terminal,
+  Radio,
+  Gamepad2,
+  Layers,
   type LucideIcon,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
@@ -13,12 +21,12 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 // ─── Site Configuration ────────────────────────────────────────────
 export const siteConfig = {
   name: "Abhijeet Mishra",
-  role: "Backend Software Engineer | Distributed Systems & Applied AI",
+  role: "Backend Software Engineer | Distributed Systems & Automation",
   tagline:
-    "Architecting resilient backend systems, distributed task queues, and applied AI workflows. Turning complex enterprise operations into observable cloud services.",
+    "Building reliable backend systems, distributed task queues, and developer tooling with a focus on observability and security.",
   email: "abhijeetmishra2410@gmail.com",
   location: "Bhubaneswar, Odisha, India",
-  bio: "Software Developer with 2+ years of experience architecting scalable automation solutions, distributed backend microservices, and applied AI workflows. Expert in Python (FastAPI), Node.js/Express, LangGraph state machines, and Playwright automation, with specialized proficiency in Robot Framework and Veeva Vault. Adept at building sandboxed execution engines, SSRF perimeter firewalls, and production CI/CD pipelines.",
+  bio: "Software developer with 2+ years of experience building automation systems, backend microservices, and web services. I specialize in Python (FastAPI), Node.js, and browser automation, with hands-on work in distributed queues, isolated sandbox execution, and CI/CD pipelines.",
   resumeUrl: "https://www.linkedin.com/in/mishraabhijeet2410",
   stats: [
     { label: "Flagships Shipped", value: "4" },
@@ -163,8 +171,7 @@ export interface Project {
   github: string;
   live: string;
   highlights: string[];
-  gradient: string;
-  icon: string;
+  icon: LucideIcon;
 }
 
 export const projects: Project[] = [
@@ -209,8 +216,7 @@ export const projects: Project[] = [
       "Automated heuristic triage classifier for flaky test failures",
       "Comprehensive test suite passing 25/25 integration and unit tests",
     ],
-    gradient: "from-emerald-500/20 via-teal-500/10 to-cyan-500/20",
-    icon: "🤖",
+    icon: Bot,
   },
   {
     title: "CodeSentinel // Autonomous Issue Resolver",
@@ -252,8 +258,7 @@ export const projects: Project[] = [
       "Ephemeral network-isolated Docker sandbox test verification",
       "Human-in-the-Loop approval gate with interactive unified diff inspector",
     ],
-    gradient: "from-blue-500/20 via-indigo-500/10 to-violet-500/20",
-    icon: "🛡️",
+    icon: ShieldCheck,
   },
   {
     title: "ReportKit // Enterprise Document Service",
@@ -294,8 +299,7 @@ export const projects: Project[] = [
       "Modular Jinja2 template engine with real-time parameter validation",
       "Interactive Template Studio console with instant iframe document preview",
     ],
-    gradient: "from-amber-500/20 via-orange-500/10 to-rose-500/20",
-    icon: "📑",
+    icon: FileText,
   },
   {
     title: "Synthetic API Monitor & Incident Engine",
@@ -338,8 +342,7 @@ export const projects: Project[] = [
       "Incident state machine with configurable failure streak thresholds",
       "Rolling percentile engine computing real-time p50/p95/p99 and uptime SLAs",
     ],
-    gradient: "from-sky-500/20 via-cyan-500/10 to-blue-500/20",
-    icon: "📊",
+    icon: Activity,
   },
   {
     title: "GridLock CTF // Terminal Engine",
@@ -380,8 +383,7 @@ export const projects: Project[] = [
       "Real-time Web Audio synthesizer simulating CRT monitor buzz",
       "100% strictly typed TypeScript implementation",
     ],
-    gradient: "from-fuchsia-500/20 via-pink-500/10 to-cyan-500/20",
-    icon: "⚡",
+    icon: Terminal,
   },
   {
     title: "Solarium FM // Space Weather Synthesizer",
@@ -422,8 +424,7 @@ export const projects: Project[] = [
       "Real-time sine-harmonic canvas ribbon renderer driven by telemetry",
       "Zero external audio samples; pure mathematical synthesis",
     ],
-    gradient: "from-cyan-500/20 via-emerald-500/10 to-teal-500/20",
-    icon: "📡",
+    icon: Radio,
   },
   {
     title: "PixelQuest: Starbyte // 16-Bit Engine",
@@ -464,8 +465,7 @@ export const projects: Project[] = [
       "Integrated in-browser pixel editor with palette selection",
       "Zero external game engines; built entirely from first principles",
     ],
-    gradient: "from-amber-500/20 via-orange-500/10 to-red-500/20",
-    icon: "🎮",
+    icon: Gamepad2,
   },
   {
     title: "Enterprise Microservices Platform",
@@ -507,8 +507,7 @@ export const projects: Project[] = [
       "Modular microservices architecture for high maintainability",
       "Deployed cloud-native solutions on AWS with Jenkins CI/CD",
     ],
-    gradient: "from-violet-500/20 via-purple-500/10 to-indigo-500/20",
-    icon: "🌐",
+    icon: Layers,
   },
 ];
 

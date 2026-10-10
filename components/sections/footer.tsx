@@ -25,14 +25,14 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="uppercase tracking-widest transition-colors hover:text-foreground hover:text-primary"
+                className="uppercase tracking-widest transition-colors hover:text-primary"
                 aria-label={s.name}
               >
                 {s.name}
               </a>
             ))}
           </div>
-          <span>Built with care · Next.js</span>
+          <span>Next.js · TypeScript</span>
         </motion.div>
       </div>
     </motion.footer>

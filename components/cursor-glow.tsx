@@ -53,7 +53,7 @@ export function CursorGlow() {
   if (!isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-60 overflow-hidden" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-30 overflow-hidden" aria-hidden="true">
       {/* Outer trailing circle */}
       <motion.div
         className="fixed left-0 top-0 rounded-full border border-primary/60 bg-primary/10 backdrop-blur-[1px]"

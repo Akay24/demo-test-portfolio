@@ -14,7 +14,7 @@ export function Skills() {
     <SectionWrapper id="skills">
       {/* Eyebrow */}
       <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-        <span className="text-primary/80 font-bold">02</span>
+        <span className="text-primary/80 font-medium">02</span>
         <span className="h-px w-8 bg-muted-foreground/20" />
         <span>Skills & Stack</span>
       </motion.div>
@@ -23,7 +23,7 @@ export function Skills() {
         variants={fadeInUp}
         className="mb-12 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
       >
-        The <em className="font-serif italic text-primary/90">tools</em> I reach for.
+        What I work with
       </motion.h2>
 
       {/* Category pills */}

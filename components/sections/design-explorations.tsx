@@ -35,7 +35,7 @@ export function DesignExplorations() {
           variants={fadeInUp}
           className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60"
         >
-          <span className="text-primary/80">04</span>
+          <span className="text-primary/80 font-medium">04</span>
           <span className="h-px w-8 bg-muted-foreground/20" />
           <span>Design Systems</span>
         </motion.div>

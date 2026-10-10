@@ -5,16 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
   X,
-  LayoutGrid,
-  List,
-  Terminal,
-  Activity,
   ArrowRight,
   Filter,
   CheckCircle2,
   Workflow,
-  Sparkles,
-  ShieldCheck,
   Building2,
   Lock,
 } from "lucide-react";
@@ -31,7 +25,6 @@ const categories = [
 ] as const;
 
 type CategoryType = (typeof categories)[number];
-type ViewMode = "bento" | "matrix";
 
 /* ── Embedded Telemetry / Terminal Snippet Box ── */
 function SnippetPreviewBox({ snippet }: { snippet: Project["previewSnippet"] }) {
@@ -136,8 +129,8 @@ function ProjectModal({
 
         {/* System Header */}
         <div className="mb-6 flex items-start gap-4 pr-10">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-border/80 bg-background/90 text-3xl shadow-sm">
-            {project.icon}
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-border/80 bg-background/90 text-primary shadow-sm">
+            <project.icon className="h-7 w-7 text-primary" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -175,7 +168,7 @@ function ProjectModal({
         <div className="mb-6 rounded-xl border border-border/70 bg-background/40 p-4">
           <div className="mb-2.5 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/80 font-semibold">
             <Workflow size={13} className="text-primary" />
-            <span>Architecture & Data Flow Topology</span>
+            <span>Architecture Flow</span>
           </div>
           <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs text-muted-foreground">
             {project.architectureFlow.map((step, idx) => (
@@ -194,7 +187,7 @@ function ProjectModal({
         {/* Architectural Narrative */}
         <div className="mb-6">
           <h4 className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/80 font-semibold">
-            System Architecture & Reliability Engineering
+            Overview
           </h4>
           <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
             {project.longDescription}
@@ -204,7 +197,7 @@ function ProjectModal({
         {/* Live Snippet / Telemetry Preview */}
         <div className="mb-6">
           <h4 className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/80 font-semibold">
-            Live Telemetry & Execution Trace
+            Execution Preview
           </h4>
           <SnippetPreviewBox snippet={project.previewSnippet} />
         </div>
@@ -212,7 +205,7 @@ function ProjectModal({
         {/* Key Highlights */}
         <div className="mb-6 border-t border-border pt-6">
           <h4 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/80 font-semibold">
-            Key Architectural Guarantees
+            Key Highlights
           </h4>
           <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {project.highlights.map((h) => (
@@ -271,7 +264,7 @@ function ProjectModal({
                 rel="noopener noreferrer"
                 className="inline-flex h-11 sm:h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
               >
-                <span>Launch Live Production System</span>
+                <span>Live Demo</span>
                 <ExternalLink size={14} />
               </a>
               <a
@@ -319,17 +312,12 @@ function BentoCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.06, duration: 0.5 }}
     >
-      {/* Background radial gradient accent */}
-      <div
-        className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-to-br ${project.gradient} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40`}
-      />
-
       {/* Top Header */}
       <div>
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-background/90 text-2xl shadow-xs transition-transform duration-300 group-hover:scale-105">
-              {project.icon}
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-background/90 text-primary shadow-xs transition-transform duration-300 group-hover:scale-105">
+              <project.icon className="h-6 w-6 text-primary" />
             </span>
             <div>
               <div className="flex flex-wrap items-center gap-1.5 mb-1">
@@ -437,139 +425,9 @@ function BentoCard({
   );
 }
 
-/* ── Technical Matrix Row (Dense Table View) ── */
-function WorkRow({
-  project,
-  index,
-  total,
-  onSelect,
-}: {
-  project: Project;
-  index: number;
-  total: number;
-  onSelect: () => void;
-}) {
-  const num = (index + 1).toString().padStart(2, "0");
-  const totalStr = total.toString().padStart(2, "0");
-
-  return (
-    <motion.div
-      layout
-      role="button"
-      tabIndex={0}
-      onClick={onSelect}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onSelect();
-        }
-      }}
-      className="group flex w-full items-center gap-3 sm:gap-6 border-b border-border py-4 sm:py-5 text-left transition-all duration-300 hover:bg-muted/40 hover:pl-3 cursor-pointer"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05, duration: 0.4 }}
-    >
-      {/* Index */}
-      <span className="hidden shrink-0 font-mono text-xs text-muted-foreground/60 md:block">
-        {num} / {totalStr}
-      </span>
-
-      {/* Online indicator */}
-      <span className="relative flex h-2 w-2 shrink-0">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-      </span>
-
-      {/* Icon + Title + Category Tag */}
-      <div className="flex shrink-0 items-center gap-3">
-        <span className="text-xl transition-transform duration-300 group-hover:scale-110">
-          {project.icon}
-        </span>
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-base sm:text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
-              {project.title}
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary font-semibold">
-              {project.category}
-            </span>
-            <span className="font-mono text-[10px] text-muted-foreground/80 hidden sm:inline">
-              • {project.badge}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Primary Verified Metric */}
-      <div className="hidden lg:flex shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground">
-        <span className="text-muted-foreground/60">{project.metrics[0]?.label}:</span>
-        <span className="font-semibold text-foreground bg-muted/60 px-2 py-0.5 rounded border border-border">
-          {project.metrics[0]?.value}
-        </span>
-      </div>
-
-      {/* Tech badges */}
-      <div className="hidden xl:flex shrink-0 gap-1.5 ml-auto">
-        {project.tech.slice(0, 3).map((t) => (
-          <span
-            key={t}
-            className="rounded-md border border-border bg-card px-2 py-0.5 font-mono text-[11px] text-muted-foreground transition-colors group-hover:border-primary/40 group-hover:text-foreground"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-
-      {/* Direct Quick Action Buttons */}
-      <div
-        className="ml-auto xl:ml-3 flex shrink-0 items-center gap-2"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {project.isProprietary ? (
-          <span className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 font-mono text-xs font-semibold text-amber-400">
-            <Lock size={11} />
-            <span>Proprietary</span>
-          </span>
-        ) : (
-          <>
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-xs active:scale-95"
-              title="Launch Live Demo"
-            >
-              <span>Demo</span>
-              <ExternalLink size={12} />
-            </a>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border bg-card/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
-              title="View GitHub Repository"
-            >
-              <GithubIcon size={12} />
-            </a>
-          </>
-        )}
-      </div>
-
-      {/* Detail Arrow */}
-      <span className="shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-1 group-hover:text-foreground">
-        →
-      </span>
-    </motion.div>
-  );
-}
-
 /* ── Projects Section ── */
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>("All Work");
-  const [viewMode, setViewMode] = useState<ViewMode>("bento");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects =
@@ -585,53 +443,20 @@ export function Projects() {
           variants={fadeInUp}
           className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60"
         >
-          <span className="text-primary/80">03</span>
+          <span className="text-primary/80 font-medium">03</span>
           <span className="h-px w-8 bg-muted-foreground/20" />
           <span>Selected Work</span>
         </motion.div>
 
         {/* Section Heading & Subtitle */}
         <motion.div variants={fadeInUp} className="mb-10">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <div>
-              <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl text-foreground">
-                Things I&apos;ve <em className="font-serif italic text-primary/90">built</em>.
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-muted-foreground">
-                Autonomous browser testing platforms, agentic issue resolvers, high-throughput microservices,
-                and low-latency DSP systems engineered with strict sandboxing, idempotency, and live telemetry.
-              </p>
-            </div>
-
-            {/* View Switcher: Bento Cards vs Technical Matrix */}
-            <div className="flex items-center gap-2 self-start lg:self-end">
-              <div className="flex items-center rounded-xl border border-border bg-card/60 p-1">
-                <button
-                  onClick={() => setViewMode("bento")}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs tracking-wider transition-all ${
-                    viewMode === "bento"
-                      ? "bg-foreground text-background shadow-xs font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-pressed={viewMode === "bento"}
-                >
-                  <LayoutGrid size={13} />
-                  <span>Bento Cards</span>
-                </button>
-                <button
-                  onClick={() => setViewMode("matrix")}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs tracking-wider transition-all ${
-                    viewMode === "matrix"
-                      ? "bg-foreground text-background shadow-xs font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-pressed={viewMode === "matrix"}
-                >
-                  <List size={13} />
-                  <span>Technical Matrix</span>
-                </button>
-              </div>
-            </div>
+          <div>
+            <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl text-foreground">
+              Things I&apos;ve built
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-muted-foreground">
+              Production services, developer tooling, and interactive experiments built with Python, TypeScript, and modern web standards.
+            </p>
           </div>
 
           {/* Category Filter Pills */}
@@ -666,46 +491,23 @@ export function Projects() {
           </div>
         </motion.div>
 
-        {/* Dynamic Project Display: Bento Cards vs Technical Matrix */}
-        <AnimatePresence mode="wait">
-          {viewMode === "bento" ? (
-            <motion.div
-              key="bento-view"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {filteredProjects.map((project, i) => (
-                <BentoCard
-                  key={project.title}
-                  project={project}
-                  index={i}
-                  onSelect={() => setSelectedProject(project)}
-                />
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="matrix-view"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="border-t border-border"
-            >
-              {filteredProjects.map((project, i) => (
-                <WorkRow
-                  key={project.title}
-                  project={project}
-                  index={i}
-                  total={filteredProjects.length}
-                  onSelect={() => setSelectedProject(project)}
-                />
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Project Cards Grid */}
+        <motion.div
+          layout
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {filteredProjects.map((project, i) => (
+            <BentoCard
+              key={project.title}
+              project={project}
+              index={i}
+              onSelect={() => setSelectedProject(project)}
+            />
+          ))}
+        </motion.div>
       </SectionWrapper>
 
       {/* Deep Architectural Detail Modal */}

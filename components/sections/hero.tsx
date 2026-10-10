@@ -116,7 +116,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-            <span className="text-primary/80 font-bold">00</span>
+            <span className="text-primary/80 font-medium">00</span>
             <span className="h-px w-8 bg-muted-foreground/20" />
             <span>Portfolio · {new Date().getFullYear()}</span>
           </div>

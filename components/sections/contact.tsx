@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { Send } from "lucide-react";
 import { siteConfig, socials } from "@/lib/data";
 import { fadeInUp } from "@/lib/animations";
 import { SectionWrapper } from "@/components/section-wrapper";
@@ -107,24 +107,21 @@ export function Contact() {
     email: "",
     message: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsLoading(false);
-    setIsSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
-    setTimeout(() => setIsSubmitted(false), 4000);
+    const subject = encodeURIComponent(`Hello from ${formState.name}`);
+    const body = encodeURIComponent(
+      `${formState.message}\n\n—\n${formState.name}\n${formState.email}`
+    );
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
   };
 
   return (
     <SectionWrapper id="contact">
       {/* Eyebrow */}
       <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-        <span className="text-primary/80 font-bold">06</span>
+        <span className="text-primary/80 font-medium">06</span>
         <span className="h-px w-8 bg-muted-foreground/20" />
         <span>Contact</span>
       </motion.div>
@@ -239,31 +236,12 @@ export function Contact() {
 
           <motion.button
             type="submit"
-            disabled={isLoading}
-            className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90 disabled:opacity-60"
+            className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 font-mono text-xs uppercase tracking-wider text-background transition-all hover:bg-foreground/90"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            {isSubmitted ? (
-              <>
-                <CheckCircle size={14} />
-                Sent!
-              </>
-            ) : isLoading ? (
-              <>
-                <motion.div
-                  className="h-3.5 w-3.5 rounded-full border-2 border-background/30 border-t-background"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-                Sending...
-              </>
-            ) : (
-              <>
-                <Send size={14} />
-                Send Message
-              </>
-            )}
+            <Send size={14} />
+            Send Message
           </motion.button>
         </motion.form>
       </div>

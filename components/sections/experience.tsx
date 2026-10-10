@@ -10,7 +10,7 @@ export function Experience() {
     <SectionWrapper id="experience">
       {/* Eyebrow */}
       <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-muted-foreground/60">
-        <span className="text-primary/80 font-bold">05</span>
+        <span className="text-primary/80 font-medium">05</span>
         <span className="h-px w-8 bg-muted-foreground/20" />
         <span>Experience</span>
       </motion.div>
@@ -19,7 +19,7 @@ export function Experience() {
         variants={fadeInUp}
         className="mb-12 font-serif text-4xl font-normal leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl"
       >
-        A working <em className="font-serif italic text-primary/90">résumé</em>.
+        Where I&apos;ve worked
       </motion.h2>
 
       {/* Experience rows */}
