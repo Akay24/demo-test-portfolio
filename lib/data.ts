@@ -154,7 +154,7 @@ export const projects: Project[] = [
       "Architected an enterprise-grade agentic QA testing platform featuring dual-mode execution (Celery/Redis worker queues + inline async fallbacks), Playwright browser driver, heuristic failure triage (DOM_TIMEOUT, NETWORK_ERROR, ASSERTION_FAILURE, SECURITY_VIOLATION), and SSRF socket perimeter protection blocking private subnets and cloud metadata endpoints. Includes a high-density React 18 / Tailwind maintainer console.",
     tech: ["FastAPI", "Playwright", "Celery", "Redis", "PostgreSQL", "React 18"],
     github: "https://github.com/Akay24/agentic-qa-platform",
-    live: "https://github.com/Akay24/agentic-qa-platform",
+    live: "https://agentic-qa-platform-rust.vercel.app",
     highlights: [
       "Dual-mode async orchestration (Celery/Redis queue or inline asyncio worker)",
       "Strict socket-level SSRF perimeter firewall protecting RFC 1918 and cloud metadata",
@@ -172,7 +172,7 @@ export const projects: Project[] = [
       "Designed and built CodeSentinel, an autonomous code repair orchestrator powered by LangGraph state machines, AST code search with credential shielding, git unified-diff generation, and ephemeral Docker sandbox runners with network-isolated process containment (--network none). Implemented a mandatory Human-in-the-Loop review gate ensuring safety against unverified auto-merges.",
     tech: ["LangGraph", "Python 3.11", "Docker Sandbox", "AST Indexer", "React 18", "Vite"],
     github: "https://github.com/Akay24/codesentinel",
-    live: "https://github.com/Akay24/codesentinel",
+    live: "https://codesentinel-sandy.vercel.app",
     highlights: [
       "LangGraph state machine with cyclic self-healing reflection loops",
       "AST symbol & cross-reference indexer with automated secret shielding",
@@ -190,7 +190,7 @@ export const projects: Project[] = [
       "Engineered a high-throughput enterprise document generation microservice wrapping the open-source reportkit-py library. Implemented strict X-Idempotency-Key request deduplication returning cached jobs with X-Cache: HIT-IDEMPOTENT headers, versioned Jinja2 HTML/PDF templates, and time-expiring HMAC-SHA256 download links. Features an interactive Template Studio with live preview.",
     tech: ["FastAPI", "Jinja2", "HMAC-SHA256", "reportkit-py", "React 18", "Vite"],
     github: "https://github.com/Akay24/reportkit-service",
-    live: "https://github.com/Akay24/reportkit-service",
+    live: "https://reportkit-service.vercel.app",
     highlights: [
       "Strict idempotency key deduplication with memory-efficient payload caching",
       "Cryptographically signed expiration download URLs with HMAC-SHA256",
@@ -208,7 +208,7 @@ export const projects: Project[] = [
       "Built a distributed synthetic availability prober and SLA incident engine using FastAPI, asyncio, and HTTPX. Features microsecond socket timing breakdowns (DNS lookup, TCP handshake, TLS negotiation, TTFB, and transfer), rolling p50/p95/p99 latency calculations, an SSRF perimeter firewall protecting private subnets, and an automated incident state machine with flap suppression and streak escalation.",
     tech: ["FastAPI", "asyncio", "HTTPX", "SSRF Firewall", "React 18", "Tailwind"],
     github: "https://github.com/Akay24/synthetic-api-monitor",
-    live: "https://github.com/Akay24/synthetic-api-monitor",
+    live: "https://synthetic-api-monitor.vercel.app",
     highlights: [
       "Microsecond socket timing waterfall (DNS, TCP, TLS, TTFB, Content Transfer)",
       "SSRF perimeter firewall blocking RFC 1918 subnets and cloud metadata",
