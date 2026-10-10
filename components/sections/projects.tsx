@@ -15,6 +15,8 @@ import {
   Workflow,
   Sparkles,
   ShieldCheck,
+  Building2,
+  Lock,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects, type Project, type ProjectPreviewLine } from "@/lib/data";
@@ -242,24 +244,47 @@ function ProjectModal({
 
         {/* Actions Sticky Footer */}
         <div className="sticky bottom-0 -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 mt-6 border-t border-border bg-card/95 backdrop-blur-md p-4 sm:p-6 flex flex-col sm:flex-row gap-3 rounded-b-2xl shadow-lg">
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 sm:h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
-          >
-            <span>Launch Live Production System</span>
-            <ExternalLink size={14} />
-          </a>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 font-mono text-xs uppercase tracking-wider text-foreground font-medium transition-all hover:bg-muted active:scale-98"
-          >
-            <GithubIcon size={14} />
-            <span>Source Code</span>
-          </a>
+          {project.isProprietary ? (
+            <>
+              <a
+                href="#experience"
+                onClick={() => {
+                  onClose();
+                  const el = document.getElementById("experience");
+                  el?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex h-11 sm:h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
+              >
+                <Building2 size={14} />
+                <span>View Spotline, Inc. Work Experience</span>
+              </a>
+              <span className="inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-5 font-mono text-xs uppercase tracking-wider text-amber-400 font-medium">
+                <Lock size={13} />
+                <span>Proprietary / Closed Source</span>
+              </span>
+            </>
+          ) : (
+            <>
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 sm:h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
+              >
+                <span>Launch Live Production System</span>
+                <ExternalLink size={14} />
+              </a>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 font-mono text-xs uppercase tracking-wider text-foreground font-medium transition-all hover:bg-muted active:scale-98"
+              >
+                <GithubIcon size={14} />
+                <span>Source Code</span>
+              </a>
+            </>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -326,25 +351,34 @@ function BentoCard({
             className="flex shrink-0 items-center gap-1.5"
             onClick={(e) => e.stopPropagation()}
           >
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg border border-primary/40 bg-primary/10 px-2.5 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-xs active:scale-95"
-              title="Launch Live Demo"
-            >
-              <span>Demo</span>
-              <ExternalLink size={12} />
-            </a>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg border border-border bg-background/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
-              title="View Source on GitHub"
-            >
-              <GithubIcon size={12} />
-            </a>
+            {project.isProprietary ? (
+              <span className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 font-mono text-[11px] font-semibold text-amber-400 shadow-xs">
+                <Lock size={11} />
+                <span>Proprietary</span>
+              </span>
+            ) : (
+              <>
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-lg border border-primary/40 bg-primary/10 px-2.5 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-xs active:scale-95"
+                  title="Launch Live Demo"
+                >
+                  <span>Demo</span>
+                  <ExternalLink size={12} />
+                </a>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-lg border border-border bg-background/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
+                  title="View Source on GitHub"
+                >
+                  <GithubIcon size={12} />
+                </a>
+              </>
+            )}
           </div>
         </div>
 
@@ -494,25 +528,34 @@ function WorkRow({
         className="ml-auto xl:ml-3 flex shrink-0 items-center gap-2"
         onClick={(e) => e.stopPropagation()}
       >
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-xs active:scale-95"
-          title="Launch Live Demo"
-        >
-          <span>Demo</span>
-          <ExternalLink size={12} />
-        </a>
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border bg-card/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
-          title="View GitHub Repository"
-        >
-          <GithubIcon size={12} />
-        </a>
+        {project.isProprietary ? (
+          <span className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 font-mono text-xs font-semibold text-amber-400">
+            <Lock size={11} />
+            <span>Proprietary</span>
+          </span>
+        ) : (
+          <>
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-xs active:scale-95"
+              title="Launch Live Demo"
+            >
+              <span>Demo</span>
+              <ExternalLink size={12} />
+            </a>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border bg-card/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
+              title="View GitHub Repository"
+            >
+              <GithubIcon size={12} />
+            </a>
+          </>
+        )}
       </div>
 
       {/* Detail Arrow */}

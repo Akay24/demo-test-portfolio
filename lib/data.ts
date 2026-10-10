@@ -155,6 +155,7 @@ export interface Project {
   longDescription: string;
   category: "Backend & Applied AI" | "Interactive & Creative" | "Enterprise Systems";
   badge: string;
+  isProprietary?: boolean;
   metrics: ProjectMetric[];
   architectureFlow: string[];
   previewSnippet: ProjectPreviewSnippet;
@@ -473,7 +474,8 @@ export const projects: Project[] = [
     longDescription:
       "Architected and deployed scalable backend microservices at Spotline, Inc. using Python and Node.js (Express). Focused on indexing and query optimization in MongoDB to reduce API latency by 23% under peak concurrency. Integrated into AWS cloud infrastructure with Docker and automated Jenkins CI/CD deployment pipelines.",
     category: "Enterprise Systems",
-    badge: "High-Concurrency Architecture",
+    badge: "Spotline, Inc. • Proprietary",
+    isProprietary: true,
     metrics: [
       { label: "Latency", value: "-23% P95 Query Latency" },
       { label: "Cloud Infra", value: "AWS + Docker" },
