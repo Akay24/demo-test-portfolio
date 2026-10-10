@@ -141,17 +141,6 @@ export const skills: SkillCategory[] = [
 ];
 
 // ─── Projects ──────────────────────────────────────────────────────
-export interface ProjectPreviewLine {
-  text: string;
-  tone?: "default" | "success" | "warn" | "error" | "info" | "accent";
-}
-
-export interface ProjectPreviewSnippet {
-  title: string;
-  type: "terminal" | "diff" | "waterfall" | "cache" | "waveform" | "metrics";
-  lines: ProjectPreviewLine[];
-}
-
 export interface ProjectMetric {
   label: string;
   value: string;
@@ -166,7 +155,6 @@ export interface Project {
   isProprietary?: boolean;
   metrics: ProjectMetric[];
   architectureFlow: string[];
-  previewSnippet: ProjectPreviewSnippet;
   tech: string[];
   github: string;
   live: string;
@@ -196,17 +184,6 @@ export const projects: Project[] = [
       "Playwright Sandbox",
       "Triage Classifier",
     ],
-    previewSnippet: {
-      title: "SSRF Perimeter & Async Worker Stream",
-      type: "terminal",
-      lines: [
-        { text: "[SECURITY] Probing target: https://staging.internal.corp", tone: "info" },
-        { text: "[SOCKET-GUARD] Blocked RFC 1918 IP: 10.0.4.12:8000 -> HTTP 403 Forbidden", tone: "warn" },
-        { text: "[CELERY-POOL] Worker 0x7fa2 dispatched test_checkout_flow.py", tone: "default" },
-        { text: "[PLAYWRIGHT] Headless chromium executed 14 assertions in 840ms", tone: "default" },
-        { text: "[RESULT] Status: PASSED (25/25 checks) | Duration: 1.84s", tone: "success" },
-      ],
-    },
     tech: ["FastAPI", "Playwright", "Celery", "Redis", "PostgreSQL", "React 18"],
     github: "https://github.com/Akay24/agentic-qa-platform",
     live: "https://agentic-qa-platform-rust.vercel.app",
@@ -238,17 +215,6 @@ export const projects: Project[] = [
       "Isolated Docker (--network none)",
       "HITL Review Gate",
     ],
-    previewSnippet: {
-      title: "Agentic State Machine & Unified Diff",
-      type: "diff",
-      lines: [
-        { text: "[GRAPH] State: triage -> ast_search -> plan -> sandbox_exec", tone: "info" },
-        { text: "[SANDBOX] Container c7b2 spawned with flags: --network none", tone: "warn" },
-        { text: "- if user_id is None: return False", tone: "error" },
-        { text: "+ if not user_id or not token: raise AuthError(401)", tone: "success" },
-        { text: "[HITL] Review gate approved by maintainer -> Branch clean", tone: "success" },
-      ],
-    },
     tech: ["LangGraph", "Python 3.11", "Docker Sandbox", "AST Indexer", "React 18", "Vite"],
     github: "https://github.com/Akay24/codesentinel",
     live: "https://codesentinel-sandy.vercel.app",
@@ -280,16 +246,6 @@ export const projects: Project[] = [
       "Jinja2 Renderer",
       "HMAC-SHA256 Signer",
     ],
-    previewSnippet: {
-      title: "Idempotent Pipeline & Token Signature",
-      type: "cache",
-      lines: [
-        { text: "[CACHE] Key: \"inv-2026-0492\" -> HIT-IDEMPOTENT (Zero redundant compute)", tone: "accent" },
-        { text: "[JINJA] Rendered template invoice_v2.html in 14.2ms", tone: "default" },
-        { text: "[SECURITY] Generated HMAC-SHA256 token (expires in 900s)", tone: "info" },
-        { text: "[STATUS] 200 OK | Content-Type: application/pdf | Size: 184 KB", tone: "success" },
-      ],
-    },
     tech: ["FastAPI", "Jinja2", "HMAC-SHA256", "reportkit-py", "React 18", "Vite"],
     github: "https://github.com/Akay24/reportkit-service",
     live: "https://reportkit-service.vercel.app",
@@ -321,18 +277,6 @@ export const projects: Project[] = [
       "Rolling Percentile Engine",
       "Incident Flap Suppressor",
     ],
-    previewSnippet: {
-      title: "Socket Waterfall & SLA Health",
-      type: "waterfall",
-      lines: [
-        { text: "DNS Lookup       ■■■ 1.4ms", tone: "info" },
-        { text: "TCP Handshake    ■■■■■ 3.8ms", tone: "info" },
-        { text: "TLS Handshake    ■■■■■■■■■ 11.2ms", tone: "accent" },
-        { text: "TTFB (Server)    ■■■■■■■■■■■■■■■■ 38.6ms", tone: "default" },
-        { text: "Data Transfer    ■■■■ 4.1ms", tone: "default" },
-        { text: "[SLA] p99: 59.1ms | Availability: 99.98% | Flap Suppression: Active", tone: "success" },
-      ],
-    },
     tech: ["FastAPI", "asyncio", "HTTPX", "SSRF Firewall", "React 18", "Tailwind"],
     github: "https://github.com/Akay24/synthetic-api-monitor",
     live: "https://synthetic-api-monitor.vercel.app",
@@ -364,17 +308,6 @@ export const projects: Project[] = [
       "Caesar & XOR Cracker",
       "CRT Phosphor Web Audio",
     ],
-    previewSnippet: {
-      title: "Interactive Unix Terminal Shell",
-      type: "terminal",
-      lines: [
-        { text: "guest@gridlock:~$ nmap -sV 192.168.1.104", tone: "default" },
-        { text: "PORT   STATE SERVICE VERSION", tone: "info" },
-        { text: "22/tcp open  ssh     OpenSSH 8.9p1", tone: "info" },
-        { text: "guest@gridlock:~$ decrypt --cipher xor --key 0x7f payload.bin", tone: "default" },
-        { text: "[DECRYPTED] FLAG{k3rn3l_p4n1c_0v3rfl0w_2026}", tone: "success" },
-      ],
-    },
     tech: ["TypeScript", "React 19", "Web Audio API", "Vite"],
     github: "https://github.com/Akay24/07-cyberpunk",
     live: "https://07-cyberpunk.vercel.app",
@@ -405,17 +338,6 @@ export const projects: Project[] = [
       "Biquad Filter Modulation",
       "60 FPS Canvas Ribbon",
     ],
-    previewSnippet: {
-      title: "Web Audio DSP & Aurora Waveform",
-      type: "waveform",
-      lines: [
-        { text: "[TELEMETRY] Solar Wind: 442 km/s | Geomagnetic Kp: 3.2", tone: "info" },
-        { text: "[VOICE 1] Sub-harmonic drone: 55.00 Hz (Sine) -> Lowpass 220 Hz", tone: "default" },
-        { text: "[VOICE 2] Pad: 110.00 Hz (Sawtooth) -> Resonance Q=4.8", tone: "accent" },
-        { text: "[VOICE 3] Pink noise wind generator -> Gain ramp 0.12", tone: "default" },
-        { text: "[CANVAS] 60 FPS aurora ribbon rendered via sine-wave harmonics", tone: "success" },
-      ],
-    },
     tech: ["Web Audio DSP", "HTML5 Canvas", "React 19", "TypeScript"],
     github: "https://github.com/Akay24/18-aurora",
     live: "https://18-aurora.vercel.app",
@@ -446,17 +368,6 @@ export const projects: Project[] = [
       "Tile Map Atlas Slicer",
       "16x16 Sprite Forge",
     ],
-    previewSnippet: {
-      title: "Canvas 2D Engine & Physics Loop",
-      type: "terminal",
-      lines: [
-        { text: "[ENGINE] Initializing 60 FPS requestAnimationFrame loop...", tone: "info" },
-        { text: "[PHYSICS] Delta time: 16.6ms | AABB collision checks: 142/frame", tone: "default" },
-        { text: "[SPRITE] Tile map atlas loaded: 256x256 spritesheet", tone: "default" },
-        { text: "[SYNTH] Chiptune audio: 8-bit square wave channel initialized", tone: "accent" },
-        { text: "[STATUS] Player at (128, 96) | Zero frame drops detected", tone: "success" },
-      ],
-    },
     tech: ["Canvas 2D", "Game Loop Engine", "React 19", "TypeScript"],
     github: "https://github.com/Akay24/11-pixel-art",
     live: "https://11-pixel-art.vercel.app",
@@ -488,17 +399,6 @@ export const projects: Project[] = [
       "Docker Containers",
       "AWS ECS & Jenkins CI/CD",
     ],
-    previewSnippet: {
-      title: "Query Profiler & Benchmark Execution",
-      type: "metrics",
-      lines: [
-        { text: "[BENCHMARK] MongoDB Compound Indexing: executionStats", tone: "info" },
-        { text: "[METRIC] totalDocsExamined: reduced from 14,820 to 18", tone: "accent" },
-        { text: "[METRIC] Execution Time: reduced from 340ms to 24ms (-92.9%)", tone: "success" },
-        { text: "[CONTAINER] Docker service healthy on AWS cluster", tone: "default" },
-        { text: "[CI/CD] Jenkins build #418 passed all regression checks", tone: "success" },
-      ],
-    },
     tech: ["Python", "Node.js", "Express.js", "MongoDB", "AWS", "Docker"],
     github: "https://github.com/Akay24",
     live: "https://github.com/Akay24",
@@ -683,9 +583,9 @@ export const designExplorations: DesignExploration[] = [
   {
     id: "05-collage-art",
     number: "05",
-    name: "FestCrafter — Lineup Matrix & Pass",
+    name: "FestCrafter — Festival Lineup & Pass",
     style: "Collage Art",
-    description: "Dadaist festival lineup matrix and torn-paper pass generator featuring analog tape overlays, halftone textures, and grain filters.",
+    description: "Dadaist festival lineup and torn-paper pass generator featuring analog tape overlays, halftone textures, and grain filters.",
     url: "https://05-collage-art.vercel.app",
     repoUrl: "https://github.com/Akay24/05-collage-art",
     tags: ["Torn Paper", "Halftone Grit", "Pass Studio"],
