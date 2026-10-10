@@ -18,11 +18,11 @@ export const siteConfig = {
     "Architecting resilient backend systems, distributed task queues, and applied AI workflows. Turning complex enterprise operations into observable cloud services.",
   email: "abhijeetmishra2410@gmail.com",
   location: "Bhubaneswar, Odisha, India",
-  bio: "Software Developer with 2+ years of experience architecting scalable automation solutions and API ecosystems. Expert in Python and Node.js/Express.js, with specialized proficiency in Robot Framework and Veeva Vault for streamlining complex workflows. Adept at optimizing CI/CD pipelines using Jenkins and deploying cloud-native applications on AWS. A proactive technical contributor who combines engineering rigor with leadership initiative, successfully mentoring teams to drive project delivery and code quality.",
-  resumeUrl: "#",
+  bio: "Software Developer with 2+ years of experience architecting scalable automation solutions, distributed backend microservices, and applied AI workflows. Expert in Python (FastAPI), Node.js/Express, LangGraph state machines, and Playwright automation, with specialized proficiency in Robot Framework and Veeva Vault. Adept at building sandboxed execution engines, SSRF perimeter firewalls, and production CI/CD pipelines.",
+  resumeUrl: "https://www.linkedin.com/in/mishraabhijeet2410",
   stats: [
-    { label: "Years Experience", value: "2+" },
-    { label: "Projects Shipped", value: "10+" },
+    { label: "Flagships Shipped", value: "4" },
+    { label: "Automated Tests", value: "66" },
     { label: "API Latency Reduced", value: "23%" },
   ],
 };
@@ -59,74 +59,74 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    category: "Backend",
+    category: "Backend & Systems",
     icon: Server,
     items: [
-      "Python",
-      "FastAPI",
-      "Node.js",
-      "Express.js",
-      "REST APIs",
-      "Microservices",
+      "Python 3.11+",
+      "FastAPI & Pydantic",
+      "Node.js & Express",
+      "LangGraph State Machines",
+      "Celery & Redis Queues",
+      "REST & Event Systems",
     ],
   },
   {
-    category: "Frontend",
+    category: "Frontend & UI",
     icon: Code2,
     items: [
-      "React",
-      "JavaScript",
-      "HTML/CSS",
-      "MERN Stack",
-      "Responsive Design",
-      "API Integration",
+      "React 18 & 19",
+      "TypeScript",
+      "Next.js App Router",
+      "Tailwind CSS",
+      "Vite & Modern Tooling",
+      "Web Audio DSP",
     ],
   },
   {
-    category: "Databases",
+    category: "Databases & Caching",
     icon: Database,
     items: [
-      "MongoDB",
-      "SQL",
       "PostgreSQL",
+      "Redis",
+      "MongoDB",
+      "SQLite (Dual-Mode)",
       "Query Optimization",
       "Data Modeling",
-      "Redis",
     ],
   },
   {
     category: "Cloud & DevOps",
     icon: Cloud,
     items: [
-      "AWS",
-      "Jenkins",
-      "CI/CD Pipelines",
-      "Docker",
-      "Cloud-Native Apps",
-      "Deployment",
+      "Docker & Sandboxing",
+      "AWS Cloud-Native",
+      "CI/CD & GitHub Actions",
+      "Jenkins Automation",
+      "SSRF Perimeter Firewalls",
+      "Nginx & Containers",
     ],
   },
   {
-    category: "Testing & Automation",
+    category: "Testing & Quality Assurance",
     icon: TestTube,
     items: [
+      "Playwright Headless Browser",
       "Robot Framework",
-      "Test Automation",
-      "AI & Workflow Automation",
-      "CI/CD Integration",
-      "Veeva Vault",
-      "Regression Testing",
+      "Pytest & TestClient",
+      "Heuristic Failure Triage",
+      "Veeva Vault Enterprise",
+      "Regression Automation",
     ],
   },
   {
-    category: "Data Science",
+    category: "Data Science & Tooling",
     icon: Wrench,
     items: [
       "Scikit-Learn",
-      "NumPy",
-      "Pandas",
-      "Jupyter",
-      "NLP",
+      "NumPy & Pandas",
+      "Jupyter Notebooks",
+      "AST Syntax Indexing",
+      "NLP Fundamentals",
       "Predictive Modeling",
     ],
   },
@@ -146,6 +146,78 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    title: "Agentic QA Automation Platform",
+    description:
+      "Autonomous browser test orchestrator with dual-mode async execution, Playwright runner, and RFC 1918 SSRF guard.",
+    longDescription:
+      "Architected an enterprise-grade agentic QA testing platform featuring dual-mode execution (Celery/Redis worker queues + inline async fallbacks), Playwright browser driver, heuristic failure triage (DOM_TIMEOUT, NETWORK_ERROR, ASSERTION_FAILURE, SECURITY_VIOLATION), and SSRF socket perimeter protection blocking private subnets and cloud metadata endpoints. Includes a high-density React 18 / Tailwind maintainer console.",
+    tech: ["FastAPI", "Playwright", "Celery", "Redis", "PostgreSQL", "React 18"],
+    github: "https://github.com/Akay24/agentic-qa-platform",
+    live: "https://github.com/Akay24/agentic-qa-platform",
+    highlights: [
+      "Dual-mode async orchestration (Celery/Redis queue or inline asyncio worker)",
+      "Strict socket-level SSRF perimeter firewall protecting RFC 1918 and cloud metadata",
+      "Automated heuristic triage classifier for flaky test failures",
+      "Comprehensive test suite passing 25/25 integration and unit tests",
+    ],
+    gradient: "from-emerald-500/20 via-teal-500/10 to-cyan-500/20",
+    icon: "🤖",
+  },
+  {
+    title: "CodeSentinel // Autonomous Issue Resolver",
+    description:
+      "LangGraph agentic state machine for automated bug triage, AST index search, and ephemeral sandbox validation.",
+    longDescription:
+      "Designed and built CodeSentinel, an autonomous code repair orchestrator powered by LangGraph state machines, AST code search with credential shielding, git unified-diff generation, and ephemeral Docker sandbox runners with network-isolated process containment (--network none). Implemented a mandatory Human-in-the-Loop review gate ensuring safety against unverified auto-merges.",
+    tech: ["LangGraph", "Python 3.11", "Docker Sandbox", "AST Indexer", "React 18", "Vite"],
+    github: "https://github.com/Akay24/codesentinel",
+    live: "https://github.com/Akay24/codesentinel",
+    highlights: [
+      "LangGraph state machine with cyclic self-healing reflection loops",
+      "AST symbol & cross-reference indexer with automated secret shielding",
+      "Ephemeral network-isolated Docker sandbox test verification",
+      "Human-in-the-Loop approval gate with interactive unified diff inspector",
+    ],
+    gradient: "from-blue-500/20 via-indigo-500/10 to-violet-500/20",
+    icon: "🛡️",
+  },
+  {
+    title: "ReportKit // Enterprise Document Service",
+    description:
+      "Asynchronous document generation microservice with Jinja2 template versioning, idempotency keys, and HMAC signed downloads.",
+    longDescription:
+      "Engineered a high-throughput enterprise document generation microservice wrapping the open-source reportkit-py library. Implemented strict X-Idempotency-Key request deduplication returning cached jobs with X-Cache: HIT-IDEMPOTENT headers, versioned Jinja2 HTML/PDF templates, and time-expiring HMAC-SHA256 download links. Features an interactive Template Studio with live preview.",
+    tech: ["FastAPI", "Jinja2", "HMAC-SHA256", "reportkit-py", "React 18", "Vite"],
+    github: "https://github.com/Akay24/reportkit-service",
+    live: "https://github.com/Akay24/reportkit-service",
+    highlights: [
+      "Strict idempotency key deduplication with memory-efficient payload caching",
+      "Cryptographically signed expiration download URLs with HMAC-SHA256",
+      "Modular Jinja2 template engine with real-time parameter validation",
+      "Interactive Template Studio console with instant iframe document preview",
+    ],
+    gradient: "from-amber-500/20 via-orange-500/10 to-rose-500/20",
+    icon: "📑",
+  },
+  {
+    title: "Synthetic API Monitor & Incident Engine",
+    description:
+      "High-frequency distributed API prober with SSRF perimeter guard, microsecond socket timing breakdown, and incident state machine.",
+    longDescription:
+      "Built a distributed synthetic availability prober and SLA incident engine using FastAPI, asyncio, and HTTPX. Features microsecond socket timing breakdowns (DNS lookup, TCP handshake, TLS negotiation, TTFB, and transfer), rolling p50/p95/p99 latency calculations, an SSRF perimeter firewall protecting private subnets, and an automated incident state machine with flap suppression and streak escalation.",
+    tech: ["FastAPI", "asyncio", "HTTPX", "SSRF Firewall", "React 18", "Tailwind"],
+    github: "https://github.com/Akay24/synthetic-api-monitor",
+    live: "https://github.com/Akay24/synthetic-api-monitor",
+    highlights: [
+      "Microsecond socket timing waterfall (DNS, TCP, TLS, TTFB, Content Transfer)",
+      "SSRF perimeter firewall blocking RFC 1918 subnets and cloud metadata",
+      "Incident state machine with configurable failure streak thresholds",
+      "Rolling percentile engine computing real-time p50/p95/p99 and uptime SLAs",
+    ],
+    gradient: "from-sky-500/20 via-cyan-500/10 to-blue-500/20",
+    icon: "📊",
+  },
   {
     title: "GridLock CTF // Terminal Engine",
     description:
@@ -198,7 +270,7 @@ export const projects: Project[] = [
     icon: "🎮",
   },
   {
-    title: "Backend Microservices Platform",
+    title: "Enterprise Microservices Platform",
     description:
       "Scalable enterprise backend microservices architecture using Python, Node.js, and optimized MongoDB queries.",
     longDescription:
@@ -215,6 +287,7 @@ export const projects: Project[] = [
     icon: "🌐",
   },
 ];
+
 
 // ─── Experience ────────────────────────────────────────────────────
 export interface Experience {
