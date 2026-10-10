@@ -240,13 +240,13 @@ function ProjectModal({
           ))}
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        {/* Actions Sticky Footer */}
+        <div className="sticky bottom-0 -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 mt-6 border-t border-border bg-card/95 backdrop-blur-md p-4 sm:p-6 flex flex-col sm:flex-row gap-3 rounded-b-2xl shadow-lg">
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
+            className="inline-flex h-11 sm:h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-mono text-xs uppercase tracking-wider text-primary-foreground font-semibold shadow-md transition-all hover:opacity-95 active:scale-98"
           >
             <span>Launch Live Production System</span>
             <ExternalLink size={14} />
@@ -255,7 +255,7 @@ function ProjectModal({
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 font-mono text-xs uppercase tracking-wider text-foreground font-medium transition-all hover:bg-muted active:scale-98"
+            className="inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 font-mono text-xs uppercase tracking-wider text-foreground font-medium transition-all hover:bg-muted active:scale-98"
           >
             <GithubIcon size={14} />
             <span>Source Code</span>
