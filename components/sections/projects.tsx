@@ -118,9 +118,17 @@ function WorkRow({
   const num = (index + 1).toString().padStart(2, "0");
 
   return (
-    <motion.button
+    <motion.div
+      role="button"
+      tabIndex={0}
       onClick={onSelect}
-      className="group flex w-full items-center gap-4 border-b border-border py-5 text-left transition-all duration-300 hover:bg-muted/40 hover:pl-3 sm:gap-6 md:py-6"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
+      className="group flex w-full items-center gap-4 border-b border-border py-5 text-left transition-all duration-300 hover:bg-muted/40 hover:pl-3 cursor-pointer sm:gap-6 md:py-6"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -147,7 +155,7 @@ function WorkRow({
       </span>
 
       {/* Tech badges */}
-      <span className="ml-auto hidden shrink-0 gap-1.5 sm:flex">
+      <span className="hidden shrink-0 gap-1.5 xl:flex">
         {project.tech.slice(0, 3).map((t) => (
           <span
             key={t}
@@ -158,11 +166,37 @@ function WorkRow({
         ))}
       </span>
 
-      {/* Arrow */}
-      <span className="ml-auto shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-1 group-hover:text-foreground sm:ml-0">
+      {/* Direct Quick Action Buttons */}
+      <span
+        className="ml-auto flex shrink-0 items-center gap-2"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground shadow-sm active:scale-95"
+          title="Launch Live Demo"
+        >
+          <span>Demo</span>
+          <ExternalLink size={12} />
+        </a>
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border bg-card/80 px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
+          title="View GitHub Repository"
+        >
+          <GithubIcon size={12} />
+        </a>
+      </span>
+
+      {/* Detail Arrow */}
+      <span className="shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-1 group-hover:text-foreground">
         →
       </span>
-    </motion.button>
+    </motion.div>
   );
 }
 
